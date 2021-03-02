@@ -1,0 +1,21 @@
+.stickerbook {
+  padding: 1rem;
+  background-color: rgb(128, 104, 84);
+  width: 840px;
+  border-radius: 0.5%;
+}
+
+.line {
+  border-left: 1px solid rgba(155, 155, 155, 0.192);
+  height: 480px;
+  position: absolute;
+  z-index: 100;
+  margin-left: 400px;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px,
+    rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
+    rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+}
+
+.book {
+  box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}

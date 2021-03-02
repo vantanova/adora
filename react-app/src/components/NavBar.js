@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 import LogoutButton from "./auth/LogoutButton";
-import { Menu } from "antd";
+import { Button, Menu, Modal } from "antd";
 import "./authStyling/Navbar.css";
 import "antd/dist/antd.css";
 
 const NavBar = ({ setAuthenticated }) => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+
   return (
     <nav>
       <Menu mode="horizontal" defaultSelectedKeys={["2"]}>
@@ -58,6 +67,19 @@ const NavBar = ({ setAuthenticated }) => {
           >
             Users
           </NavLink>
+        </Menu.Item>
+        <Menu.Item key="5" style={{ border: "none", float: "right" }}>
+          <Button onClick={showModal}>Click</Button>
+          <Modal
+            title="Basic Modal"
+            visible={isModalVisible}
+            onCancel={handleCancel}
+            footer={null}
+          >
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+          </Modal>
         </Menu.Item>
         <Menu.Item key="5" style={{ border: "none", float: "right" }}>
           <LogoutButton setAuthenticated={setAuthenticated} />

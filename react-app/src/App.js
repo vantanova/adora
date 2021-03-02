@@ -7,6 +7,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import Home from "./components/Home";
+import Profile from "./components/Profile";
 import { authenticate } from "./services/auth";
 
 function App() {
@@ -52,6 +53,13 @@ function App() {
           authenticated={authenticated}
         >
           <UsersList />
+        </ProtectedRoute>
+        <ProtectedRoute
+          path="/profile"
+          exact={true}
+          authenticated={authenticated}
+        >
+          <Profile />
         </ProtectedRoute>
         <ProtectedRoute
           path="/users/:userId"

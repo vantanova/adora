@@ -2,7 +2,6 @@
   padding: 1rem;
   background-color: rgb(128, 104, 84);
   width: 840px;
-  border-radius: 0.5%;
 }
 
 .line {
@@ -18,4 +17,18 @@
 
 .book {
   box-shadow: rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+}
+
+div.ant-modal_body {
+  padding: none;
+}
+
+.footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.footer_text {
+  font-size: 16px;
 }

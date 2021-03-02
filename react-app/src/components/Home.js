@@ -10,7 +10,7 @@ import Stickerbook from "./Stickerbook";
 const Home = ({ setAuthenticated }) => {
   return (
     <div>
-      <Stickerbook></Stickerbook>
+      <h1>Home</h1>
     </div>
   );
 };

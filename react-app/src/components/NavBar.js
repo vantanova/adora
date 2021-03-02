@@ -3,7 +3,9 @@ import { NavLink } from "react-router-dom";
 import LogoutButton from "./auth/LogoutButton";
 import { Button, Menu, Modal } from "antd";
 import "./authStyling/Navbar.css";
+import "../components/Stickerbook";
 import "antd/dist/antd.css";
+import Stickerbook from "../components/Stickerbook";
 
 const NavBar = ({ setAuthenticated }) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -14,6 +16,20 @@ const NavBar = ({ setAuthenticated }) => {
   const handleCancel = () => {
     setIsModalVisible(false);
   };
+
+  const footer = (
+    <div className="footer">
+      <p className="footer_text">
+        Press on the corner of a page to turn pages!
+      </p>
+      <Button
+        style={{ color: "#806854", borderColor: "#8d725c" }}
+        onClick={handleCancel}
+      >
+        Close
+      </Button>
+    </div>
+  );
 
   return (
     <nav>
@@ -68,17 +84,37 @@ const NavBar = ({ setAuthenticated }) => {
             Users
           </NavLink>
         </Menu.Item>
+        <Menu.Item key="6" style={{ border: "none" }}>
+          <NavLink
+            to="/profile"
+            exact={true}
+            activeClassName="active"
+            style={{ color: "#453823" }}
+          >
+            Profile
+          </NavLink>
+        </Menu.Item>
         <Menu.Item key="5" style={{ border: "none", float: "right" }}>
-          <Button onClick={showModal}>Click</Button>
+          <Button
+            style={{ color: "#806854", borderColor: "#8d725c" }}
+            onClick={showModal}
+          >
+            Stickerbook
+          </Button>
           <Modal
-            title="Basic Modal"
             visible={isModalVisible}
             onCancel={handleCancel}
-            footer={null}
+            closable={false}
+            footer={footer}
+            width={"90%"}
+            bodyStyle={{ padding: "0" }}
+            style={{
+              marginTop: "-6vh",
+              display: "flex",
+              justifyContent: "center",
+            }}
           >
-            <p>Some contents...</p>
-            <p>Some contents...</p>
-            <p>Some contents...</p>
+            <Stickerbook></Stickerbook>
           </Modal>
         </Menu.Item>
         <Menu.Item key="5" style={{ border: "none", float: "right" }}>

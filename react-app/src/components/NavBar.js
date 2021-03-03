@@ -117,7 +117,7 @@ const NavBar = ({ setAuthenticated }) => {
             <Stickerbook></Stickerbook>
           </Modal>
         </Menu.Item>
-        <Menu.Item key="5" style={{ border: "none", float: "right" }}>
+        <Menu.Item key="7" style={{ border: "none", float: "right" }}>
           <LogoutButton setAuthenticated={setAuthenticated} />
         </Menu.Item>
       </Menu>

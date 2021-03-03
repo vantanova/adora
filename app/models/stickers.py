@@ -18,6 +18,8 @@ class Sticker(db.Model):
     def to_dict(self):
         return {
             "id": self.id,
-            "projectName": self.projectName,
-            "teamName": self.teamName,
+            "title": self.title,
+            "description": self.description,
+            "rarity": self.rarity,
+            "photoUrl": self.photoUrl,
         }

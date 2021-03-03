@@ -32,3 +32,20 @@ div.ant-modal_body {
 .footer_text {
   font-size: 16px;
 }
+
+.sticker {
+  height: 12vh;
+  width: 12vh;
+}
+
+.book_title {
+  width: 100%;
+}
+
+.article_style {
+  width: 100vh;
+  padding: 10px 20px;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}

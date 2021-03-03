@@ -5,11 +5,14 @@ import FlipPage from "react-flip-page";
 import "./Styling/Stickerbook.css";
 import Sticker from "./Sticker";
 
-function Stickerbook() {
+function Stickerbook({ post }) {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const userId = sessionUser.id;
-  console.log(userId);
+
+  if (post === true) {
+    console.log("yes");
+  }
 
   useEffect(() => {
     dispatch(getUserStickers(userId));
@@ -21,7 +24,7 @@ function Stickerbook() {
   }
 
   const pages = [
-    { title: "Space Stickers", content: "Content content content" },
+    { title: "My Stickers", content: "Content content content" },
     { title: "Shape Stickers", content: "Content content content" },
     { title: "Summer Stickers", content: "Content content content" },
     { title: "Serious Stickers", content: "Content content content" },

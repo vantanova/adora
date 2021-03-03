@@ -57,12 +57,12 @@ const NavBar = () => {
         </Menu.Item>
         <Menu.Item key="4" style={{ border: "none" }}>
           <NavLink
-            to="/users"
+            to="/profile"
             exact={true}
             activeClassName="active"
             style={{ color: "#453823" }}
           >
-            Users
+            Profile
           </NavLink>
         </Menu.Item>
         <Menu.Item key="7" style={{ border: "none", float: "right" }}>

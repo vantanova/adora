@@ -1,21 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { getUserStickers } from "../store/sticker";
+import { getUserStickers, editSticker } from "../store/sticker";
 import { useSelector, useDispatch } from "react-redux";
 import FlipPage from "react-flip-page";
 import "./Styling/Stickerbook.css";
 import Sticker from "./Sticker";
 
-function Stickerbook({ post }) {
+function Stickerbook() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const userId = sessionUser.id;
 
-  if (post === true) {
-    console.log("yes");
-  }
-
   useEffect(() => {
     dispatch(getUserStickers(userId));
+    dispatch(editSticker());
   }, [dispatch]);
 
   const sessionStickers = useSelector((state) => state.sticker.sticker);

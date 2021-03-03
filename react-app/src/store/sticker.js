@@ -1,9 +1,15 @@
 const REMOVE_STICKER = "sticker/removeSticker";
 const GET_STICKER = "sticker/getSticker";
+const EDIT_STICKER = "sticker/editSticker";
 
 const getSticker = (sticker) => ({
   type: GET_STICKER,
   payload: sticker,
+});
+
+export const editSticker = (sticker) => ({
+  type: EDIT_STICKER,
+  payload: "true",
 });
 
 const removeSticker = () => ({
@@ -25,6 +31,8 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case GET_STICKER:
       return { ...state, sticker: action.payload };
+    case EDIT_STICKER:
+      return { ...state, stickerEdit: action.payload };
     default:
       return state;
   }

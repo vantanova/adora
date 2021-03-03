@@ -28,7 +28,7 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin}>
+    <form onSubmit={onLogin} style={{ marginTop: "10vh" }}>
       <div>
         {errors.map((error) => (
           <div>{error}</div>

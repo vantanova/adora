@@ -8,7 +8,18 @@ class Post(db.Model):
     title = db.Column(db.String(100), nullable=False)
     uploadDate = db.Column(db.Date)
     message = db.Column(db.String(500), nullable=True)
+    photoUrl = db.Column(db.String, nullable=False)
     ownerId = db.Column(
         db.Integer, db.ForeignKey("users.id"), nullable=False)
-    user = db.relationship("User")
+    user = db.relationship("User", cascade="all,delete")
     stickers = db.relationship("Sticker",  lazy="dynamic", secondary=post_stickers, back_populates="posts")
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+            "title": self.title,
+            "message": self.message,
+            "photoUrl": self.photoUrl,
+            "ownerId": self.ownerId,
+            "owner": self.user.to_dict()
+        }

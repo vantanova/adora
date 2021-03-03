@@ -31,6 +31,8 @@ function reducer(state = initialState, action) {
   switch (action.type) {
     case GET_POST:
       return { ...state, currentPost: action.payload };
+    case GET_ALL_POST:
+      return { ...state, posts: action.payload };
     default:
       return state;
   }

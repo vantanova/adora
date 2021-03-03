@@ -33,7 +33,14 @@ const NavBar = () => {
   );
 
   return (
-    <nav>
+    <nav
+      style={{
+        position: "fixed",
+        top: "0",
+        width: "100%",
+        zIndex: "100",
+      }}
+    >
       <Menu mode="horizontal" defaultSelectedKeys={["2"]}>
         <Menu.Item key="0" style={{ border: "none" }}>
           <NavLink
@@ -55,23 +62,15 @@ const NavBar = () => {
             Home
           </NavLink>
         </Menu.Item>
-        <Menu.Item key="4" style={{ border: "none" }}>
-          <NavLink
-            to="/profile"
-            exact={true}
-            activeClassName="active"
-            style={{ color: "#453823" }}
-          >
-            Profile
-          </NavLink>
-        </Menu.Item>
+
         <Menu.Item key="7" style={{ border: "none", float: "right" }}>
           <LogoutButton />
         </Menu.Item>
         {sessionUser && (
-          <Menu.Item key="5" style={{ border: "none", float: "right" }}>
+          <Menu.Item key="5" style={{ border: "none" }}>
             <Button
-              style={{ color: "#806854", borderColor: "#8d725c" }}
+              style={{ color: "#806854" }}
+              type="text"
               onClick={showModal}
             >
               Stickerbook

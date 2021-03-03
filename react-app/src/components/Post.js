@@ -13,13 +13,16 @@ import {
   LikeOutlined,
   DislikeTwoTone,
   BookTwoTone,
+  ConsoleSqlOutlined,
 } from "@ant-design/icons";
 
 const { Panel } = Collapse;
 const { Meta } = Card;
 
-const Post = () => {
+const Post = ({ post }) => {
   const dispatch = useDispatch();
+
+  console.log(post.owner);
 
   const [visible, setVisible] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -72,13 +75,13 @@ const Post = () => {
     <Meta
       avatar={
         <Avatar
-          src={test.ProfilePhotoUrl}
+          src={post.owner.photoUrl}
           size="large"
           style={{ marginTop: "2px" }}
         />
       }
-      title={test.title}
-      description={<p className="description">{test.owner}</p>}
+      title={post.title}
+      description={<p className="description">{post.owner.username}</p>}
     />
   );
 
@@ -132,14 +135,14 @@ const Post = () => {
       <Card
         title={cardTitle}
         avatar={Avatar}
-        style={{ width: "35rem" }}
+        style={{ width: "35rem", margin: "1rem" }}
         className="post"
         actions={[likeActions, showText, showMySticker]}
       >
-        <img className="post_image" src={test.photoUrl}></img>
+        <img className="post_image" src={post.photoUrl}></img>
         <Collapse activeKey={visible} ghost>
           <Panel key="1" showArrow={false}>
-            <p>{test.message}</p>
+            <p>{post.message}</p>
           </Panel>
         </Collapse>
       </Card>

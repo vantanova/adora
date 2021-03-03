@@ -53,7 +53,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
   }
 
   return (
-    <form onSubmit={onSignUp}>
+    <form onSubmit={onSignUp} style={{ marginTop: "10vh" }}>
       <div>
         <label>User Name</label>
         <input

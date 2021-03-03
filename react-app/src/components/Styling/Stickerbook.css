@@ -49,3 +49,8 @@ div.ant-modal_body {
   flex-direction: row;
   flex-wrap: wrap;
 }
+
+.sticker_button {
+  background: none;
+  border: none;
+}

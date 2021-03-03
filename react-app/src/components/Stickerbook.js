@@ -32,6 +32,7 @@ function Stickerbook() {
       <div className="stickerbook">
         <div className="line"></div>
         <FlipPage
+          flipOnTouchZone={4}
           className="book"
           disableSwipe
           flipOnTouch

@@ -1,21 +1,25 @@
 import React, { useState } from "react";
+import "antd/dist/antd.css";
+import { Popover, Tag } from "antd";
 import "./Styling/Stickerbook.css";
 
 function Sticker({ sticker }) {
-  const test = {
-    id: 1,
-    title: "Jupiter",
-    description: "This is a cool sticker!",
-    rarity: "common",
-    photoUrl:
-      "https://adorabucket.s3-us-west-1.amazonaws.com/image-from-rawpixel-id-2034668-png.png",
-  };
+  const content = (
+    <div>
+      <p>{sticker.description}</p>
+      <p>
+        Rarity: <Tag color="geekblue">Common</Tag>
+      </p>
+    </div>
+  );
 
   return (
     sticker && (
-      <div>
-        <img className="sticker" src={sticker.photoUrl}></img>
-      </div>
+      <Popover content={content} title={sticker.title} trigger="hover">
+        <button className="sticker_button">
+          <img className="sticker" src={sticker.photoUrl}></img>
+        </button>
+      </Popover>
     )
   );
 }

@@ -1,12 +1,14 @@
 import React from "react";
-import { logout } from "../../services/auth";
+import { logout } from "../../store/session";
+import { useDispatch } from "react-redux";
 import { Button } from "antd";
 import "antd/dist/antd.css";
 
 const LogoutButton = ({ setAuthenticated }) => {
+  const dispatch = useDispatch();
+
   const onLogout = async (e) => {
-    await logout();
-    setAuthenticated(false);
+    return dispatch(logout());
   };
 
   return (

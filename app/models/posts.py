@@ -1,5 +1,5 @@
 from .db import db
-
+from .post_stickers import post_stickers
 
 class Post(db.Model):
     __tablename__ = 'posts'
@@ -10,4 +10,5 @@ class Post(db.Model):
     message = db.Column(db.String(500), nullable=True)
     ownerId = db.Column(
         db.Integer, db.ForeignKey("users.id"), nullable=False)
-    user = db.relationship("User", back_populates="tasks")
+    user = db.relationship("User")
+    stickers = db.relationship("Sticker",  lazy="dynamic", secondary=post_stickers, back_populates="posts")

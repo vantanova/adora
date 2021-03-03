@@ -1,7 +1,7 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from .post_stickers import post_stickers
+from .user_stickers import user_stickers
 
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
@@ -12,8 +12,8 @@ class User(db.Model, UserMixin):
   hashed_password = db.Column(db.String(255), nullable = False)
   bio = db.Column(db.String(500), nullable = True)
   photoUrl = db.Column(db.String, nullable = True)
-  stickers = db.relationship("Sticker", lazy="dynamic", secondary=post_stickers,
-                            back_populates="users")
+  stickers = db.relationship("Sticker", lazy="dynamic", secondary=user_stickers,
+                            back_populates="owners")
 
 
   @property

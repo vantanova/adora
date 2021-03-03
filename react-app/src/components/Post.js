@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import "antd/dist/antd.css";
 import "./Styling/Post.css";
 import { Card, Avatar, Button, Collapse, Modal } from "antd";
+import { currentPostId } from "../store/post";
 import Stickerbook from "./Stickerbook";
 import {
   EditOutlined,
@@ -17,16 +19,22 @@ const { Panel } = Collapse;
 const { Meta } = Card;
 
 const Post = () => {
-  const [visible, setVisible] = useState(0);
+  const dispatch = useDispatch();
 
+  const [visible, setVisible] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
     setIsModalVisible(true);
+    dispatch(currentPostId(1));
   };
   const handleCancel = () => {
     setIsModalVisible(false);
+    dispatch(currentPostId(null));
   };
+
+  // useEffect(() => {
+  // }, []);
 
   const footer = (
     <div className="footer">

@@ -54,3 +54,7 @@ div.ant-modal_body {
   background: none;
   border: none;
 }
+
+.select {
+  height: 14vh;
+}

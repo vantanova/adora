@@ -22,8 +22,6 @@ const { Meta } = Card;
 const Post = ({ post }) => {
   const dispatch = useDispatch();
 
-  console.log(post.owner);
-
   const [visible, setVisible] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
 

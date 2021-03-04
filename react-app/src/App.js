@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { restoreUser } from "./store/session";
+
 import LoginForm from "./components/auth/LoginForm";
 import SignUpForm from "./components/auth/SignUpForm";
 import NavBar from "./components/NavBar";
@@ -20,7 +21,7 @@ function App() {
     dispatch(restoreUser()).then(() => {
       setLoaded(true);
     });
-  }, []);
+  }, [dispatch]);
 
   if (!loaded) {
     return null;

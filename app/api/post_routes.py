@@ -33,12 +33,9 @@ def posts():
 def create_post():
     form = PostForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print("-----------------------", request.data)
-    print("------------", request.files)
     if form.validate_on_submit():
             data = Post()
             form.populate_obj(data)
-            print("--------", str(data))
 
             if "user_file" not in request.files:
 
@@ -51,6 +48,7 @@ def create_post():
             data.photoUrl = photoUrl
 
             print("---------------", file)
+            print("---------------", photoUrl)
 
             if file.filename == "":
                 return "Please select a file"

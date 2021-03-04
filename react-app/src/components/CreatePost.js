@@ -40,10 +40,12 @@ const CreatePost = () => {
   const sessionFile = useSelector((state) => state.post.file);
   let formData;
   let file;
+
   if (sessionFile) {
     formData = sessionFile;
     for (var value of sessionFile.values()) {
       file = value;
+      console.log(file);
     }
   }
 

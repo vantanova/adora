@@ -81,10 +81,9 @@ const Canvas = () => {
       callback: function () {
         let dataURL = stageRef.current.toDataURL({ pixelRatio: 3 });
         // downloadURI(dataURL, "stage.png");
-        const blob = dataURItoBlob(dataURL);
-        console.log(blob);
+        const name = dataURItoBlob(dataURL);
         fd = new FormData();
-        fd.append("photo", blob);
+        fd.append("photo", name);
         dispatch(setFile(fd));
         setGood({ border: "1px solid #d2f8d2" });
       },

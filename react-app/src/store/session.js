@@ -24,9 +24,7 @@ export const login = ({ email, password }) => async (dispatch) => {
 };
 
 export const restoreUser = () => async (dispatch) => {
-  const res = await fetch("/api/auth", {
-    headers: { "Content-Type": "application/json" },
-  });
+  const res = await fetch("/api/auth/");
   const data = await res.json();
   if (res.ok) {
     dispatch(setUser(data));
@@ -79,7 +77,7 @@ function reducer(state = initialState, action) {
   let newState;
   switch (action.type) {
     case SET_USER:
-      return { ...state, user: action.payload };
+      return { user: action.payload };
     case REMOVE_USER:
       newState = Object.assign({}, state, { user: null });
       return newState;

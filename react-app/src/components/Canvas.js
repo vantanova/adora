@@ -3,12 +3,18 @@ import { useDispatch } from "react-redux";
 import { Stage, Layer, Line, Text } from "react-konva";
 import "./Styling/Canvas.css";
 import { setFile } from "../store/post";
+import { Button, Select } from "antd";
+import "antd/dist/antd.css";
+
+const { Option } = Select;
 
 const Canvas = () => {
   const dispatch = useDispatch();
   const [tool, setTool] = useState("pen");
   const [lines, setLines] = useState([]);
-  const [good, setGood] = useState();
+  const [good, setGood] = useState({
+    border: "1px solid rgb(240, 240, 240)",
+  });
   const [medium, setMedium] = useState("pen");
   const isDrawing = React.useRef(false);
   const stageRef = React.useRef(null);
@@ -87,7 +93,7 @@ const Canvas = () => {
 
   const deleteDrawing = () => {
     setLines([]);
-    setGood({});
+    setGood({ border: "1px solid rgb(240, 240, 240)" });
     dispatch(setFile(null));
   };
 
@@ -118,7 +124,7 @@ const Canvas = () => {
   };
 
   return (
-    <div className={medium}>
+    <div>
       <Stage
         width={590}
         height={300}
@@ -126,23 +132,28 @@ const Canvas = () => {
         onMousemove={handleMouseMove}
         onMouseup={handleMouseUp}
         ref={stageRef}
-        className="drawing_area"
+        className={medium}
         style={good}
       >
         {layer}
       </Stage>
-      <select
+
+      <Select
         value={tool}
         onChange={(e) => {
           setTool(e.target.value);
           setMedium(e.target.value);
         }}
       >
-        <option value="pen">Pen</option>
-        <option value="eraser">Eraser</option>
-      </select>
-      <button onClick={handleExport}>Use drawing?</button>
-      <button onClick={deleteDrawing}>Click here to clear!</button>
+        <Option value="pen">Pen</Option>
+        <Option value="eraser">Eraser</Option>
+      </Select>
+      <Button style={{ float: "right" }} onClick={handleExport}>
+        Use drawing?
+      </Button>
+      <Button style={{ float: "right" }} onClick={deleteDrawing}>
+        Click here to clear!
+      </Button>
     </div>
   );
 };

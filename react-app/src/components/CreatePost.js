@@ -24,6 +24,13 @@ const { TextArea } = Input;
 
 const CreatePost = () => {
   const dispatch = useDispatch();
+  const [title, setTitle] = useState();
+  const [photoFile, setPhotoFile] = useState();
+  const [message, setMessage] = useState();
+  const [date, setDate] = useState(new Date());
+  const [saveData, setSaveData] = useState();
+  const [visible, setVisible] = useState(0);
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const sessionFile = useSelector((state) => state.post.file);
 
@@ -34,13 +41,6 @@ const CreatePost = () => {
   }
 
   console.log(sessionFile);
-  // for (var value of fd.values()) {
-  //   console.log(value);
-  // }
-
-  const [saveData, setSaveData] = useState();
-  const [visible, setVisible] = useState(0);
-  const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -50,13 +50,6 @@ const CreatePost = () => {
     setIsModalVisible(false);
     dispatch(currentPostId(null));
   };
-
-  // useEffect(() => {
-  // }, []);
-
-  //   const saveData = () => {
-  //     Canvas.getSaveData();
-  //   };
 
   const footer = (
     <div className="footer">
@@ -99,7 +92,13 @@ const CreatePost = () => {
           style={{ marginTop: "2px" }}
         />
       }
-      title={<Input placeholder="Enter a title!"></Input>}
+      title={
+        <Input
+          placeholder="Enter a title!"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        ></Input>
+      }
       description={<p className="description">{test.owner}</p>}
     />
   );
@@ -151,25 +150,41 @@ const CreatePost = () => {
 
   return (
     <div>
-      <Card
-        title={cardTitle}
-        avatar={Avatar}
-        style={{
-          width: "40rem",
-          marginTop: "5rem",
-          marginLeft: "auto",
-          marginRight: "auto",
-        }}
-        className="post"
-      >
-        <Canvas></Canvas>
-        <button>Wow!</button>
-        <h3>Body</h3>
-        <TextArea
-          style={{ height: "15vh" }}
-          placeholder="Enter a description for your awesome post!"
-        ></TextArea>
-      </Card>
+      <form>
+        <Card
+          title={cardTitle}
+          avatar={Avatar}
+          style={{
+            width: "40rem",
+            marginTop: "5rem",
+            marginLeft: "auto",
+            marginRight: "auto",
+          }}
+          className="post"
+        >
+          <Canvas></Canvas>
+          <h3>Body</h3>
+          <TextArea
+            style={{ height: "15vh" }}
+            placeholder="Enter a description for your awesome post!"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+          ></TextArea>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <Button
+              type="primary"
+              style={{
+                background: "#806854",
+                borderColor: "#8d725c",
+                marginTop: "1vh",
+                width: "20vh",
+              }}
+            >
+              Submit
+            </Button>
+          </div>
+        </Card>
+      </form>
     </div>
   );
 };

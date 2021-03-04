@@ -4,7 +4,7 @@ import { logout } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Dropdown, Menu } from "antd";
 import "antd/dist/antd.css";
-import { MenuOutlined } from "@ant-design/icons";
+import { MenuOutlined, PlusOutlined } from "@ant-design/icons";
 
 const LogoutButton = () => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -47,21 +47,51 @@ const LogoutButton = () => {
       </Menu.Item>
     </Menu>
   );
+  const postActions = (
+    <Menu>
+      <Menu.Item key="2" style={{ border: "none" }}>
+        <NavLink to="/create_post" exact={true} activeClassName="active">
+          Create Post
+        </NavLink>
+      </Menu.Item>
+    </Menu>
+  );
 
   return (
-    <Dropdown overlay={sessionUser ? loggedIn : signedOut} trigger="click">
-      <Button
-        type="primary"
-        style={{
-          background: "#806854",
-          borderColor: "#8d725c",
-          paddingRight: "0",
-          paddingLeft: "10px",
-        }}
-      >
-        <MenuOutlined />
-      </Button>
-    </Dropdown>
+    <div>
+      {sessionUser && (
+        <Dropdown
+          overlay={postActions}
+          placement="bottomCenter"
+          trigger="click"
+        >
+          <Button
+            style={{
+              color: "#8d725c",
+              borderColor: "#8d725c",
+              paddingRight: "0",
+              paddingLeft: "10px",
+              marginRight: "1vh",
+            }}
+          >
+            <PlusOutlined />
+          </Button>
+        </Dropdown>
+      )}
+      <Dropdown overlay={sessionUser ? loggedIn : signedOut} trigger="click">
+        <Button
+          type="primary"
+          style={{
+            background: "#806854",
+            borderColor: "#8d725c",
+            paddingRight: "0",
+            paddingLeft: "10px",
+          }}
+        >
+          <MenuOutlined />
+        </Button>
+      </Dropdown>
+    </div>
   );
 };
 

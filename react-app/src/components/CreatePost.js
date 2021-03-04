@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import "antd/dist/antd.css";
 import "./Styling/Post.css";
-import { Card, Avatar, Button, Collapse, Modal } from "antd";
+import { Card, Avatar, Button, Collapse, Modal, Input } from "antd";
 import { currentPostId } from "../store/post";
 import Stickerbook from "./Stickerbook";
 import {
@@ -15,15 +15,18 @@ import {
   BookTwoTone,
   ConsoleSqlOutlined,
 } from "@ant-design/icons";
+import Canvas from "./Canvas";
 
 const { Panel } = Collapse;
 const { Meta } = Card;
+const { TextArea } = Input;
 
-const Post = ({ post }) => {
+const CreatePost = () => {
   const dispatch = useDispatch();
 
-  console.log(post.owner);
+  const saveableCanvas = React.createRef(null);
 
+  const [saveData, setSaveData] = useState();
   const [visible, setVisible] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
@@ -38,6 +41,10 @@ const Post = ({ post }) => {
 
   // useEffect(() => {
   // }, []);
+
+  //   const saveData = () => {
+  //     Canvas.getSaveData();
+  //   };
 
   const footer = (
     <div className="footer">
@@ -75,13 +82,13 @@ const Post = ({ post }) => {
     <Meta
       avatar={
         <Avatar
-          src={post.owner.photoUrl}
-          size={50}
+          src={test.ProfilePhotoUrl}
+          size="large"
           style={{ marginTop: "2px" }}
         />
       }
-      title={post.title}
-      description={<p className="description">{post.owner.username}</p>}
+      title={<Input placeholder="Enter a title!"></Input>}
+      description={<p className="description">{test.owner}</p>}
     />
   );
 
@@ -135,19 +142,24 @@ const Post = ({ post }) => {
       <Card
         title={cardTitle}
         avatar={Avatar}
-        style={{ width: "40rem", margin: "1rem" }}
+        style={{
+          width: "40rem",
+          marginTop: "5rem",
+          marginLeft: "auto",
+          marginRight: "auto",
+        }}
         className="post"
-        actions={[likeActions, showText, showMySticker]}
       >
-        <img className="post_image" src={post.photoUrl}></img>
-        <Collapse activeKey={visible} ghost>
-          <Panel key="1" showArrow={false}>
-            <p>{post.message}</p>
-          </Panel>
-        </Collapse>
+        <Canvas></Canvas>
+        <button>Wow!</button>
+        <h3>Body</h3>
+        <TextArea
+          style={{ height: "15vh" }}
+          placeholder="Enter a description for your awesome post!"
+        ></TextArea>
       </Card>
     </div>
   );
 };
 
-export default Post;
+export default CreatePost;

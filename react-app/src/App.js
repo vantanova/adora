@@ -9,6 +9,7 @@ import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
 import Home from "./components/Home";
+import CreatePost from "./components/CreatePost";
 import Profile from "./components/Profile";
 import { authenticate } from "./services/auth";
 
@@ -39,6 +40,9 @@ function App() {
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
+        <ProtectedRoute path="/create_post" exact={true}>
+          <CreatePost />
+        </ProtectedRoute>
         <ProtectedRoute path="/users" exact={true}>
           <UsersList />
         </ProtectedRoute>

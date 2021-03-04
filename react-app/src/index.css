@@ -3,3 +3,7 @@ body {
   background-image: url("./images/dust_scratches.png");
   background-repeat: repeat;
 }
+
+::-webkit-scrollbar {
+  display: none;
+}

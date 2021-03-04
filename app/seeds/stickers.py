@@ -14,5 +14,5 @@ def seed_stickers():
 # TRUNCATE Removes all the data from the table, and resets
 # the auto incrementing primary key
 def undo_stickers():
-    db.session.execute('TRUNCATE users;')
+    db.session.execute('TRUNCATE stickers CASCADE;')
     db.session.commit()

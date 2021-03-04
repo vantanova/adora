@@ -24,6 +24,7 @@ const Home = () => {
   return (
     <div className="main_content">
       {allPosts &&
+        allPosts.posts &&
         allPosts.posts.map((post) => {
           return <Post post={post}></Post>;
         })}

@@ -84,7 +84,7 @@ const Canvas = () => {
         const blob = dataURItoBlob(dataURL);
         console.log(blob);
         fd = new FormData();
-        fd.append("canvasImage", blob);
+        fd.append("photo", blob);
         dispatch(setFile(fd));
         setGood({ border: "1px solid #d2f8d2" });
       },
@@ -123,6 +123,13 @@ const Canvas = () => {
     isDrawing.current = false;
   };
 
+  function handleChange(value) {
+    console.log(value); // { value: "lucy", key: "lucy", label: "Lucy (101)" }
+
+    setTool(value.value);
+    setMedium(value.value);
+  }
+
   return (
     <div>
       <Stage
@@ -139,11 +146,9 @@ const Canvas = () => {
       </Stage>
 
       <Select
-        value={tool}
-        onChange={(e) => {
-          setTool(e.target.value);
-          setMedium(e.target.value);
-        }}
+        labelInValue
+        defaultValue={{ value: "pen" }}
+        onChange={handleChange}
       >
         <Option value="pen">Pen</Option>
         <Option value="eraser">Eraser</Option>

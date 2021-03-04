@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "antd/dist/antd.css";
 import "./Styling/Post.css";
 import { Card, Avatar, Button, Collapse, Modal, Input } from "antd";
-import { currentPostId } from "../store/post";
+import { currentPostId, getAllPosts } from "../store/post";
 import Stickerbook from "./Stickerbook";
 import {
   EditOutlined,
@@ -17,30 +17,35 @@ import {
 } from "@ant-design/icons";
 import Canvas from "./Canvas";
 import useSelection from "antd/lib/table/hooks/useSelection";
+import { createPost } from "../store/post";
+import { Redirect, useHistory } from "react-router-dom";
 
 const { Panel } = Collapse;
 const { Meta } = Card;
 const { TextArea } = Input;
 
 const CreatePost = () => {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [title, setTitle] = useState();
   const [photoFile, setPhotoFile] = useState();
   const [message, setMessage] = useState();
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState();
   const [saveData, setSaveData] = useState();
   const [visible, setVisible] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
+  const sessionUser = useSelector((state) => state.session.user);
+  const userId = sessionUser.id;
   const sessionFile = useSelector((state) => state.post.file);
-
+  let formData;
+  let file;
   if (sessionFile) {
+    formData = sessionFile;
     for (var value of sessionFile.values()) {
-      console.log(value);
+      file = value;
     }
   }
-
-  console.log(sessionFile);
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -49,6 +54,22 @@ const CreatePost = () => {
   const handleCancel = () => {
     setIsModalVisible(false);
     dispatch(currentPostId(null));
+  };
+
+  const onPostCreation = async (e) => {
+    e.preventDefault();
+    let data = new FormData();
+    data.append("title", title);
+    data.append("message", message);
+    data.append("user_file", file);
+    data.append("uploadDate", new Date());
+    data.append("ownerId", userId);
+
+    dispatch(createPost(data)).then((res) => {
+      if (res.id) {
+        history.push("/");
+      }
+    });
   };
 
   const footer = (
@@ -150,7 +171,7 @@ const CreatePost = () => {
 
   return (
     <div>
-      <form>
+      <form onSubmit={onPostCreation}>
         <Card
           title={cardTitle}
           avatar={Avatar}
@@ -173,6 +194,7 @@ const CreatePost = () => {
           <div style={{ display: "flex", justifyContent: "center" }}>
             <Button
               type="primary"
+              htmlType="submit"
               style={{
                 background: "#806854",
                 borderColor: "#8d725c",

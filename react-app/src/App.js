@@ -11,7 +11,6 @@ import User from "./components/User";
 import Home from "./components/Home";
 import CreatePost from "./components/CreatePost";
 import Profile from "./components/Profile";
-import { authenticate } from "./services/auth";
 
 function App() {
   const dispatch = useDispatch();

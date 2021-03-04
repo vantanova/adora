@@ -1,13 +1,19 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { Stage, Layer, Line, Text } from "react-konva";
+import "./Styling/Canvas.css";
+import { setFile } from "../store/post";
 
 const Canvas = () => {
-  const [tool, setTool] = React.useState("pen");
-  const [lines, setLines] = React.useState([]);
+  const dispatch = useDispatch();
+  const [tool, setTool] = useState("pen");
+  const [lines, setLines] = useState([]);
+  const [good, setGood] = useState();
+  const [medium, setMedium] = useState("pen");
   const isDrawing = React.useRef(false);
   const stageRef = React.useRef(null);
   const layerRef = React.useRef(null);
-  let stage;
+  let fd;
 
   // function downloadURI(uri, name) {
   //   console.log(uri);
@@ -38,6 +44,32 @@ const Canvas = () => {
     return new Blob([ia], { type: mimeString });
   }
 
+  // if (tool === "eraser") {
+  //   setMedium("eraser");
+  // } else if (tool === "pen") {
+  //   setMedium("pen");
+  // }
+
+  let layer = (
+    <Layer ref={layerRef}>
+      {lines.map((line, i) => (
+        <Line
+          key={i}
+          points={line.points}
+          stroke="black"
+          strokeWidth={10}
+          lineJoin="round"
+          tension={0.5}
+          lineCap="round"
+          perfectDrawEnabled={false}
+          globalCompositeOperation={
+            line.tool === "eraser" ? "destination-out" : "source-over"
+          }
+        />
+      ))}
+    </Layer>
+  );
+
   const handleExport = () => {
     const uri = stageRef.current.toImage({
       callback: function () {
@@ -45,17 +77,18 @@ const Canvas = () => {
         // downloadURI(dataURL, "stage.png");
         const blob = dataURItoBlob(dataURL);
         console.log(blob);
-        let fd = new FormData();
+        fd = new FormData();
         fd.append("canvasImage", blob);
-        for (var value of fd.values()) {
-          console.log(value);
-        }
+        dispatch(setFile(fd));
+        setGood({ border: "1px solid #d2f8d2" });
       },
     });
   };
 
-  const clearCanvas = () => {
-    layerRef.current.clearCache();
+  const deleteDrawing = () => {
+    setLines([]);
+    setGood({});
+    dispatch(setFile(null));
   };
 
   const handleMouseDown = (e) => {
@@ -69,7 +102,7 @@ const Canvas = () => {
     if (!isDrawing.current) {
       return;
     }
-    stage = e.target.getStage();
+    const stage = e.target.getStage();
     const point = stage.getPointerPosition();
     let lastLine = lines[lines.length - 1];
     // add point
@@ -85,7 +118,7 @@ const Canvas = () => {
   };
 
   return (
-    <div>
+    <div className={medium}>
       <Stage
         width={590}
         height={300}
@@ -93,34 +126,23 @@ const Canvas = () => {
         onMousemove={handleMouseMove}
         onMouseup={handleMouseUp}
         ref={stageRef}
+        className="drawing_area"
+        style={good}
       >
-        <Layer ref={layerRef}>
-          {lines.map((line, i) => (
-            <Line
-              key={i}
-              points={line.points}
-              stroke="black"
-              strokeWidth={10}
-              tension={0.5}
-              lineCap="round"
-              globalCompositeOperation={
-                line.tool === "eraser" ? "destination-out" : "source-over"
-              }
-            />
-          ))}
-        </Layer>
+        {layer}
       </Stage>
       <select
         value={tool}
         onChange={(e) => {
           setTool(e.target.value);
+          setMedium(e.target.value);
         }}
       >
         <option value="pen">Pen</option>
         <option value="eraser">Eraser</option>
       </select>
-      <button onClick={handleExport}>Click here to log stage data URL</button>
-      <button onClick={clearCanvas}>Click here to clean canvas</button>
+      <button onClick={handleExport}>Use drawing?</button>
+      <button onClick={deleteDrawing}>Click here to clear!</button>
     </div>
   );
 };

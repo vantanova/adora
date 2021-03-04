@@ -1,11 +1,16 @@
 // const REMOVE_STICKER = "sticker/removeSticker";
 const GET_POST = "post/getPost";
 const GET_ALL_POST = "post/getAllPost";
+const SET_FILE = "post/setFile";
 // const EDIT_STICKER = "sticker/editSticker";
 
 export const currentPostId = (id) => ({
   type: GET_POST,
   payload: id,
+});
+export const setFile = (formData) => ({
+  type: SET_FILE,
+  payload: formData,
 });
 
 const allPosts = (posts) => ({
@@ -33,6 +38,8 @@ function reducer(state = initialState, action) {
       return { ...state, currentPost: action.payload };
     case GET_ALL_POST:
       return { ...state, posts: action.payload };
+    case SET_FILE:
+      return { ...state, file: action.payload };
     default:
       return state;
   }

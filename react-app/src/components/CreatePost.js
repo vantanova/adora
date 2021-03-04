@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "antd/dist/antd.css";
 import "./Styling/Post.css";
 import { Card, Avatar, Button, Collapse, Modal, Input } from "antd";
@@ -16,6 +16,7 @@ import {
   ConsoleSqlOutlined,
 } from "@ant-design/icons";
 import Canvas from "./Canvas";
+import useSelection from "antd/lib/table/hooks/useSelection";
 
 const { Panel } = Collapse;
 const { Meta } = Card;
@@ -24,7 +25,18 @@ const { TextArea } = Input;
 const CreatePost = () => {
   const dispatch = useDispatch();
 
-  const saveableCanvas = React.createRef(null);
+  const sessionFile = useSelector((state) => state.post.file);
+
+  if (sessionFile) {
+    for (var value of sessionFile.values()) {
+      console.log(value);
+    }
+  }
+
+  console.log(sessionFile);
+  // for (var value of fd.values()) {
+  //   console.log(value);
+  // }
 
   const [saveData, setSaveData] = useState();
   const [visible, setVisible] = useState(0);

@@ -1,0 +1,11 @@
+.drawing_area {
+  border: 1px solid rgb(240, 240, 240);
+}
+
+.pen {
+  cursor: url("../../images/pen.png") 0 36, auto;
+}
+
+.eraser {
+  cursor: url("../../images/eraser.png") 8 25, auto;
+}

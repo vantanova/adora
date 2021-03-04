@@ -12,9 +12,9 @@ function Sticker({ sticker }) {
   console.log(currentPostId);
   console.log(sticker.id);
 
-  // function removeSticker() {
-  //   dispatch(removeUserStickers(sticker.id, currentPostId));
-  // }
+  function removeSticker() {
+    dispatch(removeUserStickers(sticker.id, currentPostId));
+  }
 
   const useStickerContent = (
     <div>
@@ -24,7 +24,7 @@ function Sticker({ sticker }) {
       </p>
       <Button
         block={true}
-        // onClick={removeSticker}
+        onClick={removeSticker}
         style={{ color: "#806854", borderColor: "#8d725c" }}
       >
         Use Sticker?

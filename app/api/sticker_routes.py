@@ -13,10 +13,15 @@ def user_projects(userId):
 
     return {"stickers": [sticker.to_dict() for sticker in data]}
 
-@sticker_routes.route('/<stickerId>/<postId>')
+@sticker_routes.route('/<stickerId>/<postId>', methods=["DELETE"])
 @login_required
 def sticker__to_post(stickerId, postId):
     post = Post.query.get(postId)
-    print(post.to_dict())
+
+    # post
+
+
+    db.session.commit()
+    print("------------------", post.to_dict())
 
     return post.to_dict()

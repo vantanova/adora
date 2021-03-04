@@ -16,6 +16,16 @@ const removeSticker = () => ({
   type: REMOVE_STICKER,
 });
 
+export const removeUserStickers = (stickerId, postId) => async (dispatch) => {
+  console.log(stickerId);
+  const res = await fetch(`/api/stickers/${stickerId}/${postId}`, {
+    method: "DELETE",
+  });
+  const data = await res.json();
+  console.log(data);
+  // dispatch(removeSticker(data));
+};
+
 export const getUserStickers = (id) => async (dispatch) => {
   console.log(id);
   const res = await fetch(`/api/stickers/${id}`);

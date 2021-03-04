@@ -19,7 +19,7 @@ const Post = ({ post }) => {
 
   const showModal = () => {
     setIsModalVisible(true);
-    dispatch(currentPostId(1));
+    dispatch(currentPostId(post.id));
   };
   const handleCancel = () => {
     setIsModalVisible(false);

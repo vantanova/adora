@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { removeUserStickers } from "../store/sticker";
 import "antd/dist/antd.css";
 import { Popover, Tag, Button, Popconfirm } from "antd";
 import "./Styling/Stickerbook.css";
@@ -7,8 +8,13 @@ import { BookOutlined } from "@ant-design/icons";
 
 function Sticker({ sticker }) {
   const currentPostId = useSelector((state) => state.post.currentPost);
-
+  const dispatch = useDispatch();
   console.log(currentPostId);
+  console.log(sticker.id);
+
+  // function removeSticker() {
+  //   dispatch(removeUserStickers(sticker.id, currentPostId));
+  // }
 
   const useStickerContent = (
     <div>
@@ -16,7 +22,11 @@ function Sticker({ sticker }) {
       <p>
         Rarity: <Tag color="geekblue">Common</Tag>
       </p>
-      <Button block={true} style={{ color: "#806854", borderColor: "#8d725c" }}>
+      <Button
+        block={true}
+        // onClick={removeSticker}
+        style={{ color: "#806854", borderColor: "#8d725c" }}
+      >
         Use Sticker?
       </Button>
     </div>

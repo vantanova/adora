@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { getUserStickers } from "../store/sticker";
 import { useSelector, useDispatch } from "react-redux";
 import { Tooltip, Tag } from "antd";
-import FlipPage from "react-flip-page";
-import "./Styling/Stickerbook.css";
-import Sticker from "./Sticker";
 import "./Styling/MiniStickerbook.css";
 
 function MiniStickebook({ stickers }) {

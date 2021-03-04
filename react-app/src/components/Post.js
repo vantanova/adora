@@ -5,16 +5,8 @@ import "./Styling/Post.css";
 import { Card, Avatar, Button, Collapse, Modal } from "antd";
 import { currentPostId } from "../store/post";
 import Stickerbook from "./Stickerbook";
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-  LikeTwoTone,
-  LikeOutlined,
-  DislikeTwoTone,
-  BookTwoTone,
-  ConsoleSqlOutlined,
-} from "@ant-design/icons";
+import MiniStickebook from "./MiniStickerbook";
+import { LikeTwoTone, BookTwoTone } from "@ant-design/icons";
 
 const { Panel } = Collapse;
 const { Meta } = Card;
@@ -56,18 +48,6 @@ const Post = ({ post }) => {
       setVisible(0);
     }
   }
-
-  const test = {
-    ownerId: 1,
-    title: "My first post",
-    message: "This is a wondeful dog I drew!",
-    uploadDate: "3/2/2021",
-    owner: "John Doe",
-    ProfilePhotoUrl:
-      "https://www.google.com/search?q=profile+picture&sxsrf=ALeKk00LOvrtNMaC5LZcpRth-ZZETaZ5tA:1614751841186&source=lnms&tbm=isch&sa=X&ved=2ahUKEwjYppOvu5PvAhWOuZ4KHSi-DLoQ_AUoAXoECCIQAw&biw=959&bih=959#imgrc=X9UVa0RvJlQphM",
-    photoUrl:
-      "https://assets-global.website-files.com/5e4319072e6fb910d3a508a6/5eb32d03692fe040d79f87db_situation.png",
-  };
 
   const cardTitle = (
     <Meta
@@ -136,6 +116,7 @@ const Post = ({ post }) => {
         style={{ width: "40rem", margin: "1rem" }}
         className="post"
         actions={[likeActions, showText, showMySticker]}
+        extra={<MiniStickebook stickers={post.stickers}></MiniStickebook>}
       >
         <img className="post_image" src={post.photoUrl}></img>
         <Collapse activeKey={visible} ghost>

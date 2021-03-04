@@ -32,16 +32,13 @@ const Canvas = () => {
   // }
 
   function dataURItoBlob(dataURI) {
-    // convert base64/URLEncoded data component to raw binary data held in a string
     let byteString;
     if (dataURI.split(",")[0].indexOf("base64") >= 0)
       byteString = atob(dataURI.split(",")[1]);
     else byteString = unescape(dataURI.split(",")[1]);
 
-    // separate out the mime component
     let mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
 
-    // write the bytes of the string to a typed array
     let ia = new Uint8Array(byteString.length);
     for (let i = 0; i < byteString.length; i++) {
       ia[i] = byteString.charCodeAt(i);
@@ -50,41 +47,14 @@ const Canvas = () => {
     return new Blob([ia], { type: mimeString });
   }
 
-  // if (tool === "eraser") {
-  //   setMedium("eraser");
-  // } else if (tool === "pen") {
-  //   setMedium("pen");
-  // }
-
-  let layer = (
-    <Layer ref={layerRef}>
-      {lines.map((line, i) => (
-        <Line
-          key={i}
-          points={line.points}
-          stroke="black"
-          strokeWidth={10}
-          lineJoin="round"
-          tension={0.5}
-          lineCap="round"
-          perfectDrawEnabled={false}
-          globalCompositeOperation={
-            line.tool === "eraser" ? "destination-out" : "source-over"
-          }
-        />
-      ))}
-    </Layer>
-  );
-
   const handleExport = () => {
     const uri = stageRef.current.toImage({
       callback: function () {
-        let dataURL = stageRef.current.toDataURL({ pixelRatio: 3 });
+        let dataURL = stageRef.current.toDataURL({ pixelRatio: 20 });
         // downloadURI(dataURL, "stage.png");
-        const name = dataURItoBlob(dataURL);
-        fd = new FormData();
-        fd.append("photo", name);
-        dispatch(setFile(fd));
+        const blob = dataURItoBlob(dataURL);
+        console.log(blob);
+        dispatch(setFile(blob));
         setGood({ border: "1px solid #d2f8d2" });
       },
     });
@@ -123,7 +93,7 @@ const Canvas = () => {
   };
 
   function handleChange(value) {
-    console.log(value); // { value: "lucy", key: "lucy", label: "Lucy (101)" }
+    console.log(value);
 
     setTool(value.value);
     setMedium(value.value);
@@ -141,7 +111,23 @@ const Canvas = () => {
         className={medium}
         style={good}
       >
-        {layer}
+        <Layer ref={layerRef}>
+          {lines.map((line, i) => (
+            <Line
+              key={i}
+              points={line.points}
+              stroke="black"
+              strokeWidth={10}
+              lineJoin="round"
+              tension={0.5}
+              lineCap="round"
+              perfectDrawEnabled={false}
+              globalCompositeOperation={
+                line.tool === "eraser" ? "destination-out" : "source-over"
+              }
+            />
+          ))}
+        </Layer>
       </Stage>
 
       <Select

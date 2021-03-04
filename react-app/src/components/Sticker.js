@@ -38,13 +38,19 @@ function Sticker({ sticker }) {
         content={useStickerContent}
         title={sticker.title}
         trigger="hover"
+        placement="bottom"
       >
         <button className="sticker_button" type="dashed" shape="round">
           <img className="sticker" src={sticker.photoUrl}></img>
         </button>
       </Popover>
     ) : (
-      <Popover content={content} title={sticker.title} trigger="hover">
+      <Popover
+        content={content}
+        title={sticker.title}
+        trigger="hover"
+        placement="bottom"
+      >
         <button className="sticker_button">
           <img className="sticker" src={sticker.photoUrl}></img>
         </button>

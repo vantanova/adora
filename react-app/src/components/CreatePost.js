@@ -5,20 +5,10 @@ import "./Styling/Post.css";
 import { Card, Avatar, Button, Collapse, Modal, Input } from "antd";
 import { currentPostId, getAllPosts } from "../store/post";
 import Stickerbook from "./Stickerbook";
-import {
-  EditOutlined,
-  EllipsisOutlined,
-  SettingOutlined,
-  LikeTwoTone,
-  LikeOutlined,
-  DislikeTwoTone,
-  BookTwoTone,
-  ConsoleSqlOutlined,
-} from "@ant-design/icons";
+import { LikeTwoTone, BookTwoTone } from "@ant-design/icons";
 import Canvas from "./Canvas";
-import useSelection from "antd/lib/table/hooks/useSelection";
 import { createPost } from "../store/post";
-import { Redirect, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 const { Panel } = Collapse;
 const { Meta } = Card;
@@ -38,16 +28,7 @@ const CreatePost = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const userId = sessionUser.id;
   const sessionFile = useSelector((state) => state.post.file);
-  let formData;
-  let file;
-
-  if (sessionFile) {
-    formData = sessionFile;
-    for (var value of sessionFile.values()) {
-      file = value;
-      console.log(file);
-    }
-  }
+  const fileName = new Date();
 
   const showModal = () => {
     setIsModalVisible(true);
@@ -63,9 +44,10 @@ const CreatePost = () => {
     let data = new FormData();
     data.append("title", title);
     data.append("message", message);
-    data.append("user_file", file);
+    data.append("user_file", sessionFile);
     data.append("uploadDate", new Date());
     data.append("ownerId", userId);
+    data.append("uniqueName", fileName);
 
     dispatch(createPost(data)).then((res) => {
       if (res.id) {

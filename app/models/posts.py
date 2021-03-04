@@ -21,5 +21,6 @@ class Post(db.Model):
             "message": self.message,
             "photoUrl": self.photoUrl,
             "ownerId": self.ownerId,
-            "owner": self.user.to_dict()
+            "owner": self.user.to_dict(),
+            "stickers": [sticker.to_dict() for sticker in self.stickers]
         }

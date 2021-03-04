@@ -1,0 +1,12 @@
+.mini_sticker {
+  width: 5vh;
+  height: 5vh;
+}
+
+.MiniStickebook {
+  width: auto;
+  max-width: 30vh;
+  border-bottom: 3px solid #f0f0f0;
+  display: flex;
+  justify-content: flex-end;
+}

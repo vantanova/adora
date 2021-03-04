@@ -53,7 +53,7 @@ function reducer(state = initialState, action) {
         const newpost = [...state.post, action.payload];
         return { ...state, post: newpost };
       }
-      return { ...state, task: action.payload };
+      return { ...state, post: action.payload };
     }
     case GET_POST:
       return { ...state, currentPost: action.payload };

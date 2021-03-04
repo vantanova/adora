@@ -26,7 +26,7 @@ def validation_errors_to_error_messages(validation_errors):
 def posts():
     posts = Post.query.all()
 
-    return {"posts": [post.to_dict() for post in posts]}
+    return {post.id:post.to_dict() for post in posts}
 
 @post_routes.route('/', methods=['POST'])
 @login_required

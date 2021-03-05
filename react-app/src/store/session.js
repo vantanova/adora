@@ -61,9 +61,7 @@ export const photoUpload = (file) => async (dispatch) => {
 };
 
 export const logout = () => async (dispatch) => {
-  const res = await fetch("/api/auth/logout", {
-    method: "DELETE",
-  });
+  const res = await fetch("/api/auth/logout");
 
   const data = await res.json();
   if (data.message === "User logged out") {

@@ -49,6 +49,8 @@ const Post = ({ post }) => {
     }
   }
 
+  console.log(post.owner);
+
   const cardTitle = (
     <Meta
       avatar={
@@ -109,23 +111,25 @@ const Post = ({ post }) => {
   );
 
   return (
-    <div>
-      <Card
-        title={cardTitle}
-        avatar={Avatar}
-        style={{ width: "40rem", margin: "1rem" }}
-        className="post"
-        actions={[likeActions, showText, showMySticker]}
-        extra={<MiniStickebook stickers={post.stickers}></MiniStickebook>}
-      >
-        <img className="post_image" src={post.photoUrl}></img>
-        <Collapse activeKey={visible} ghost>
-          <Panel key="1" showArrow={false}>
-            <p>{post.message}</p>
-          </Panel>
-        </Collapse>
-      </Card>
-    </div>
+    post && (
+      <div>
+        <Card
+          title={cardTitle}
+          avatar={Avatar}
+          style={{ width: "40rem", margin: "1rem" }}
+          className="post"
+          actions={[likeActions, showText, showMySticker]}
+          extra={<MiniStickebook stickers={post.stickers}></MiniStickebook>}
+        >
+          <img className="post_image" src={post.photoUrl}></img>
+          <Collapse activeKey={visible} ghost>
+            <Panel key="1" showArrow={false}>
+              <p>{post.message}</p>
+            </Panel>
+          </Collapse>
+        </Card>
+      </div>
+    )
   );
 };
 

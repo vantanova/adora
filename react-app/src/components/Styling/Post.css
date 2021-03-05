@@ -6,3 +6,13 @@
 .post_image {
   width: 100%;
 }
+
+.like_actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.like_text {
+  margin: 0;
+}

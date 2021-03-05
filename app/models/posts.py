@@ -9,6 +9,7 @@ class Post(db.Model):
     uploadDate = db.Column(db.Date)
     message = db.Column(db.String(500), nullable=True)
     photoUrl = db.Column(db.String, nullable=False)
+    likes = db.Column(db.Integer, nullable=True)
     ownerId = db.Column(
         db.Integer, db.ForeignKey("users.id"), nullable=False)
     user = db.relationship("User", cascade="all,delete")
@@ -22,5 +23,6 @@ class Post(db.Model):
             "photoUrl": self.photoUrl,
             "ownerId": self.ownerId,
             "owner": self.user.to_dict(),
+            "likes": self.likes,
             "stickers": [sticker.to_dict() for sticker in self.stickers]
         }

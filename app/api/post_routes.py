@@ -28,6 +28,17 @@ def posts():
 
     return {post.id:post.to_dict() for post in posts}
 
+@post_routes.route('/add_like/<id>')
+@login_required
+def add_like_post(id):
+    post = Post.query.get(id)
+    post.likes += 1
+    db.session.add(post)
+    db.session.commit()
+    print ("--------------------", post.to_dict())
+
+    return post.to_dict()
+
 @post_routes.route('/', methods=['POST'])
 @login_required
 def create_post():
@@ -46,6 +57,7 @@ def create_post():
             photoUrl = upload_file_to_s3(file)
 
             data.photoUrl = photoUrl
+            data.likes = 0
 
             print("---------------", file)
             print("---------------", photoUrl)

@@ -17,15 +17,6 @@ def seed_stickers():
     demo5 = Sticker(title='Viking Ship', description='Nothing quite like some arctic see water you know?',
                 rarity='Common', photoUrl="https://adorabucket.s3-us-west-1.amazonaws.com/58fa574afd8d8903672fa6e1.png")
 
-    demo6 = Sticker(title='Wow!', description='Pretty exciting huh? Nobody talks about his poor cousin "Wowie!"',
-                rarity='Common', photoUrl="https://adorabucket.s3-us-west-1.amazonaws.com/PngItem_297278.png")
-
-    demo7 = Sticker(title='Aesthetic', description='This sticker is just beautiful',
-                rarity='Common', photoUrl="https://adorabucket.s3-us-west-1.amazonaws.com/pngfind.com-tumblr-stickers-png-67646.png")
-
-    demo8 = Sticker(title='Super Star', description='A classic.',
-                rarity='Common', photoUrl="https://adorabucket.s3-us-west-1.amazonaws.com/%E2%80%94Pngtree%E2%80%94pop+art+eighties+patch+sticker_3779395.png")
-
 
 
     db.session.add(demo)
@@ -33,9 +24,6 @@ def seed_stickers():
     db.session.add(demo3)
     db.session.add(demo4)
     db.session.add(demo5)
-    db.session.add(demo6)
-    db.session.add(demo7)
-    db.session.add(demo8)
 
     db.session.commit()
 

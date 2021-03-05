@@ -25,6 +25,13 @@ const setPost = (post) => ({
 // const removeSticker = () => ({
 //   type: REMOVE_STICKER,
 // });
+export const addLike = (id) => async (dispatch) => {
+  const res = await fetch(`/api/posts/add_like/${id}`);
+  const data = await res.json();
+  dispatch(setPost(data));
+  return data;
+};
+
 export const createPost = (formData) => async (dispatch) => {
   const res = await fetch("/api/posts/", {
     method: "POST",
@@ -47,10 +54,6 @@ function reducer(state = initialState, action) {
   // let newState;
   switch (action.type) {
     case SET_POST: {
-      if (state.post) {
-        const newpost = [...state.post, action.payload];
-        return { ...state, post: newpost };
-      }
       return { ...state, post: action.payload };
     }
     case GET_POST:

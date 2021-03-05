@@ -1,18 +1,23 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "antd/dist/antd.css";
 import "./Styling/Post.css";
 import { Card, Avatar, Button, Collapse, Modal } from "antd";
-import { currentPostId } from "../store/post";
+import { currentPostId, addLike } from "../store/post";
 import Stickerbook from "./Stickerbook";
 import MiniStickebook from "./MiniStickerbook";
 import { LikeTwoTone, BookTwoTone } from "@ant-design/icons";
+import useSelection from "antd/lib/table/hooks/useSelection";
 
 const { Panel } = Collapse;
 const { Meta } = Card;
 
 const Post = ({ post }) => {
   const dispatch = useDispatch();
+
+  const [likes, setLikes] = useState(
+    useSelector((state) => state.post.posts[post.id].likes)
+  );
 
   const [visible, setVisible] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -26,6 +31,10 @@ const Post = ({ post }) => {
     dispatch(currentPostId(null));
   };
 
+  function addALike() {
+    setLikes((likes) => (likes += 1));
+    dispatch(addLike(post.id));
+  }
   // useEffect(() => {
   // }, []);
 
@@ -68,8 +77,12 @@ const Post = ({ post }) => {
       {/* <Button type="text">
         <DislikeTwoTone style={{ fontSize: "2vh" }} />
       </Button> */}
+      <h2 className="like_text">{likes}</h2>
       <Button type="text">
-        <LikeTwoTone style={{ fontSize: "2vh", margin: "none" }} />
+        <LikeTwoTone
+          onClick={addALike}
+          style={{ fontSize: "2vh", margin: "none" }}
+        />
       </Button>
     </div>
   );

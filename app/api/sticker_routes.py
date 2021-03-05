@@ -9,7 +9,7 @@ sticker_routes = Blueprint('stickers', __name__)
 @login_required
 def user_projects(userId):
     user = User.query.get(userId)
-    data = user.stickers.all()
+    data = user.stickers
 
     return {"stickers": [sticker.to_dict() for sticker in data]}
 

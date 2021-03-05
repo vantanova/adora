@@ -61,6 +61,18 @@ const NavBar = () => {
             Home
           </NavLink>
         </Menu.Item>
+        {sessionUser && (
+          <Menu.Item key="9" style={{ border: "none" }}>
+            <NavLink
+              to="/packs"
+              exact={true}
+              activeClassName="active"
+              style={{ color: "#453823" }}
+            >
+              Packs
+            </NavLink>
+          </Menu.Item>
+        )}
 
         <Menu.Item key="7" style={{ border: "none", float: "right" }}>
           <LogoutButton />
@@ -68,8 +80,8 @@ const NavBar = () => {
         {sessionUser && (
           <Menu.Item key="5" style={{ border: "none" }}>
             <Button
-              style={{ color: "#806854" }}
               type="text"
+              style={{ marginLeft: "-2vh" }}
               onClick={showModal}
             >
               Stickerbook

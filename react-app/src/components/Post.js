@@ -6,14 +6,14 @@ import { Card, Avatar, Button, Collapse, Modal } from "antd";
 import { currentPostId, addLike } from "../store/post";
 import Stickerbook from "./Stickerbook";
 import MiniStickebook from "./MiniStickerbook";
-import { LikeTwoTone, BookTwoTone } from "@ant-design/icons";
-import useSelection from "antd/lib/table/hooks/useSelection";
+import { LikeTwoTone, BookTwoTone, DeleteOutlined } from "@ant-design/icons";
 
 const { Panel } = Collapse;
 const { Meta } = Card;
 
 const Post = ({ post }) => {
   const dispatch = useDispatch();
+  const sessionUser = useSelector((state) => state.session.user);
 
   const [likes, setLikes] = useState(
     useSelector((state) => state.post.posts[post.id].likes)
@@ -37,6 +37,10 @@ const Post = ({ post }) => {
   }
   // useEffect(() => {
   // }, []);
+
+  function deletePost() {
+    console.log("yes");
+  }
 
   const footer = (
     <div className="footer">
@@ -94,32 +98,43 @@ const Post = ({ post }) => {
       </Button>
     </div>
   );
-  const showMySticker = (
-    <div className="like_actions">
-      <Button type="text">
-        <BookTwoTone
-          twoToneColor="rgb(128, 104, 84)"
-          style={{ fontSize: "2vh", margin: "none" }}
-          onClick={showModal}
-        />
-      </Button>
-      <Modal
-        visible={isModalVisible}
-        onCancel={handleCancel}
-        closable={false}
-        footer={footer}
-        width={"90%"}
-        bodyStyle={{ padding: "0", width: "800px", height: "500px" }}
-        style={{
-          marginTop: "-6vh",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <Stickerbook post={true}></Stickerbook>
-      </Modal>
-    </div>
-  );
+
+  function lastTab() {
+    if (sessionUser && sessionUser.id === post.ownerId) {
+      return (
+        <Button type="text" onClick={deletePost}>
+          <DeleteOutlined style={{ fontSize: "2vh", margin: "none" }} />
+        </Button>
+      );
+    } else {
+      return (
+        <div className="like_actions">
+          <Button type="text">
+            <BookTwoTone
+              twoToneColor="rgb(128, 104, 84)"
+              style={{ fontSize: "2vh", margin: "none" }}
+              onClick={showModal}
+            />
+          </Button>
+          <Modal
+            visible={isModalVisible}
+            onCancel={handleCancel}
+            closable={false}
+            footer={footer}
+            width={"90%"}
+            bodyStyle={{ padding: "0", width: "800px", height: "500px" }}
+            style={{
+              marginTop: "-6vh",
+              display: "flex",
+              justifyContent: "center",
+            }}
+          >
+            <Stickerbook post={true}></Stickerbook>
+          </Modal>
+        </div>
+      );
+    }
+  }
 
   return (
     post && (
@@ -129,7 +144,7 @@ const Post = ({ post }) => {
           avatar={Avatar}
           style={{ width: "40rem", margin: "1rem" }}
           className="post"
-          actions={[likeActions, showText, showMySticker]}
+          actions={[likeActions, showText, lastTab()]}
           extra={<MiniStickebook stickers={post.stickers}></MiniStickebook>}
         >
           <img className="post_image" alt="post" src={post.photoUrl}></img>

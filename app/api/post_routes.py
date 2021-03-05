@@ -22,7 +22,6 @@ def validation_errors_to_error_messages(validation_errors):
 
 
 @post_routes.route('/')
-@login_required
 def posts():
     posts = Post.query.all()
 

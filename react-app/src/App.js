@@ -12,6 +12,7 @@ import User from "./components/User";
 import Home from "./components/Home";
 import CreatePost from "./components/CreatePost";
 import Profile from "./components/Profile";
+import Packs from "./components/Packs";
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +49,9 @@ function App() {
         </ProtectedRoute>
         <ProtectedRoute path="/profile" exact={true}>
           <Profile />
+        </ProtectedRoute>
+        <ProtectedRoute path="/packs" exact={true}>
+          <Packs />
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />

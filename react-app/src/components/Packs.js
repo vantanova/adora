@@ -26,6 +26,7 @@ function Packs() {
         <Row>
           <Col span={24}>
             <h1>Open a sticker pack!</h1>
+            <img src="../images/Stickerpack.png"></img>
           </Col>
         </Row>
       </Card>

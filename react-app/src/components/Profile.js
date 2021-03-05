@@ -1,25 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { Card, Row, Col, Input, Button, Tooltip } from "antd";
+import { Card, Row, Col, Input } from "antd";
 import "./Styling/Profile.css";
-import Stickerbook from "./Stickerbook";
-import { BookTwoTone, LikeTwoTone } from "@ant-design/icons";
+// import Stickerbook from "./Stickerbook";
 
 const { Meta } = Card;
 const { TextArea } = Input;
 
 function Profile() {
   const sessionUser = useSelector((state) => state.session.user);
-  const [visibleBook, setVisibleBook] = useState(null);
+  // const [visibleBook, setVisibleBook] = useState(null);
   console.log(sessionUser);
 
-  function setBook() {
-    if (visibleBook == null) {
-      setVisibleBook(<Stickerbook></Stickerbook>);
-    } else {
-      setVisibleBook(null);
-    }
-  }
+  // function setBook() {
+  //   if (visibleBook == null) {
+  //     setVisibleBook(<Stickerbook></Stickerbook>);
+  //   } else {
+  //     setVisibleBook(null);
+  //   }
+  // }
 
   return (
     <Card className="main_profile_content">

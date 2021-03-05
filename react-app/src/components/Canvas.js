@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Stage, Layer, Line, Text } from "react-konva";
+import { Stage, Layer, Line } from "react-konva";
 import "./Styling/Canvas.css";
 import { setFile } from "../store/post";
 import { Button, Select } from "antd";
@@ -19,7 +19,6 @@ const Canvas = () => {
   const isDrawing = React.useRef(false);
   const stageRef = React.useRef(null);
   const layerRef = React.useRef(null);
-  let fd;
 
   // function downloadURI(uri, name) {
   //   console.log(uri);
@@ -48,12 +47,11 @@ const Canvas = () => {
   }
 
   const handleExport = () => {
-    const uri = stageRef.current.toImage({
+    stageRef.current.toImage({
       callback: function () {
         let dataURL = stageRef.current.toDataURL({ pixelRatio: 20 });
         // downloadURI(dataURL, "stage.png");
         const blob = dataURItoBlob(dataURL);
-        console.log(blob);
         dispatch(setFile(blob));
         setGood({ border: "1px solid #d2f8d2" });
       },
@@ -138,7 +136,16 @@ const Canvas = () => {
         <Option value="pen">Pen</Option>
         <Option value="eraser">Eraser</Option>
       </Select>
-      <Button style={{ float: "right" }} onClick={handleExport}>
+      <Button
+        type="primary"
+        style={{
+          float: "right",
+          background: "#806854",
+          borderColor: "#8d725c",
+          width: "13vh",
+        }}
+        onClick={handleExport}
+      >
         Use drawing?
       </Button>
       <Button style={{ float: "right" }} onClick={deleteDrawing}>

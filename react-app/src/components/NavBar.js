@@ -10,7 +10,6 @@ import Stickerbook from "../components/Stickerbook";
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
-  console.log(sessionUser);
   const [isModalVisible, setIsModalVisible] = useState(false);
 
   const showModal = () => {

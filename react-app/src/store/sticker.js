@@ -1,4 +1,4 @@
-const REMOVE_STICKER = "sticker/removeSticker";
+// const REMOVE_STICKER = "sticker/removeSticker";
 const GET_STICKER = "sticker/getSticker";
 const EDIT_STICKER = "sticker/editSticker";
 
@@ -12,9 +12,9 @@ export const editSticker = (sticker) => ({
   payload: "true",
 });
 
-const removeSticker = () => ({
-  type: REMOVE_STICKER,
-});
+// const removeSticker = () => ({
+//   type: REMOVE_STICKER,
+// });
 
 export const removeUserStickers = (stickerId, postId) => async (dispatch) => {
   console.log(stickerId);
@@ -37,7 +37,7 @@ export const getUserStickers = (id) => async (dispatch) => {
 const initialState = { sticker: null };
 
 function reducer(state = initialState, action) {
-  let newState;
+  // let newState;
   switch (action.type) {
     case GET_STICKER:
       return { ...state, sticker: action.payload };

@@ -4,7 +4,7 @@ import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 
 const LoginForm = () => {
-  const [errors, setErrors] = useState([]);
+  // const [errors, setErrors] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
@@ -30,9 +30,9 @@ const LoginForm = () => {
   return (
     <form onSubmit={onLogin} style={{ marginTop: "10vh" }}>
       <div>
-        {errors.map((error) => (
+        {/* {errors.map((error) => (
           <div>{error}</div>
-        ))}
+        ))} */}
       </div>
       <div>
         <label htmlFor="email">Email</label>

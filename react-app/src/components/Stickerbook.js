@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { getUserStickers, editSticker } from "../store/sticker";
 import { useSelector, useDispatch } from "react-redux";
-import { SvgDrawing } from "@svg-drawing/core";
 import FlipPage from "react-flip-page";
 import "./Styling/Stickerbook.css";
 import Sticker from "./Sticker";
@@ -18,7 +17,7 @@ function Stickerbook() {
   useEffect(() => {
     dispatch(getUserStickers(userId));
     dispatch(editSticker());
-  }, [dispatch]);
+  }, [userId, dispatch]);
 
   const sessionStickers = useSelector((state) => state.sticker.sticker);
   if (sessionStickers) {

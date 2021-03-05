@@ -11,13 +11,12 @@ const Home = () => {
   useEffect(() => {
     dispatch(getAllPosts());
     dispatch(setFile(null));
-  }, []);
+  }, [dispatch]);
   const allPosts = useSelector((state) => state.post.posts);
 
   useEffect(() => {
     if (allPosts) {
       setAllPostsArr(Object.values(allPosts));
-      console.log(allPostsArr);
     }
   }, [allPosts]);
 
@@ -25,7 +24,7 @@ const Home = () => {
     <div className="main_content">
       {allPostsArr &&
         allPostsArr.map((post) => {
-          return <Post post={post}></Post>;
+          return <Post key={post.id} post={post}></Post>;
         })}
     </div>
   );

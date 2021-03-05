@@ -32,7 +32,6 @@ export const restoreUser = () => async (dispatch) => {
 };
 
 export const createUser = (user) => async (dispatch) => {
-  const { username, email, password } = user;
   const res = await fetch(`/api/auth/signup`, {
     method: "POST",
     headers: {

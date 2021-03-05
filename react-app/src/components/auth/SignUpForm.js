@@ -3,32 +3,31 @@ import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createUser } from "../../store/session";
 
-const SignUpForm = ({ authenticated, setAuthenticated }) => {
+const SignUpForm = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
+  const sessionUser = useSelector((state) => state.session.user);
 
   const dispatch = useDispatch();
-  const sessionUser = useSelector((state) => state.session.user);
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    let newErrors = [];
+    // let newErrors = [];
     if (password === repeatPassword) {
-      dispatch(createUser({ username, email, password }))
-        .then(() => {
-          setUsername("");
-          setEmail("");
-          setPassword("");
-          setRepeatPassword("");
-        })
-        .catch(async (res) => {
-          const data = await res.json();
-          if (data && data.errors) {
-            newErrors = data.errors;
-          }
-        });
+      dispatch(createUser({ username, email, password })).then(() => {
+        setUsername("");
+        setEmail("");
+        setPassword("");
+        setRepeatPassword("");
+      });
+      // .catch(async (res) => {
+      //   const data = await res.json();
+      //   if (data && data.errors) {
+      //     newErrors = data.errors;
+      //   }
+      // });
     }
   };
 
@@ -48,7 +47,7 @@ const SignUpForm = ({ authenticated, setAuthenticated }) => {
     setRepeatPassword(e.target.value);
   };
 
-  if (authenticated) {
+  if (sessionUser) {
     return <Redirect to="/" />;
   }
 

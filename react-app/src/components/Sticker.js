@@ -1,14 +1,12 @@
-import React, { useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { removeUserStickers, getUserStickers } from "../store/sticker";
 import { getAllPosts } from "../store/post";
-import { useHistory } from "react-router-dom";
 import "antd/dist/antd.css";
 import { Popover, Tag, Button, message } from "antd";
 import "./Styling/Stickerbook.css";
 
 function Sticker({ sticker }) {
-  const history = useHistory();
   let check;
   const sessionUser = useSelector((state) => state.session.user);
   const currentPostId = useSelector((state) => state.post.currentPost);
@@ -65,7 +63,7 @@ function Sticker({ sticker }) {
         placement="bottom"
       >
         <button className="sticker_button" type="dashed" shape="round">
-          <img className="sticker" src={sticker.photoUrl}></img>
+          <img className="sticker" alt="sticker" src={sticker.photoUrl}></img>
         </button>
       </Popover>
     ) : (
@@ -76,7 +74,7 @@ function Sticker({ sticker }) {
         placement="bottom"
       >
         <button className="sticker_button">
-          <img className="sticker" src={sticker.photoUrl}></img>
+          <img className="sticker" alt="sticker" src={sticker.photoUrl}></img>
         </button>
       </Popover>
     ))

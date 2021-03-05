@@ -26,7 +26,6 @@ const setPost = (post) => ({
 //   type: REMOVE_STICKER,
 // });
 export const createPost = (formData) => async (dispatch) => {
-  console.log(formData);
   const res = await fetch("/api/posts/", {
     method: "POST",
     body: formData,
@@ -39,14 +38,13 @@ export const createPost = (formData) => async (dispatch) => {
 export const getAllPosts = () => async (dispatch) => {
   const res = await fetch(`/api/posts/`);
   const data = await res.json();
-  console.log(data);
   dispatch(allPosts(data));
 };
 
 const initialState = { post: null };
 
 function reducer(state = initialState, action) {
-  let newState;
+  // let newState;
   switch (action.type) {
     case SET_POST: {
       if (state.post) {

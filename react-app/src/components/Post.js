@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import "antd/dist/antd.css";
 import "./Styling/Post.css";
@@ -119,7 +119,7 @@ const Post = ({ post }) => {
           actions={[likeActions, showText, showMySticker]}
           extra={<MiniStickebook stickers={post.stickers}></MiniStickebook>}
         >
-          <img className="post_image" src={post.photoUrl}></img>
+          <img className="post_image" alt="post" src={post.photoUrl}></img>
           <Collapse activeKey={visible} ghost>
             <Panel key="1" showArrow={false}>
               <p>{post.message}</p>

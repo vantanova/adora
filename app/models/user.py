@@ -35,5 +35,6 @@ class User(db.Model, UserMixin):
       "id": self.id,
       "username": self.username,
       "email": self.email,
-      "photoUrl": self.photoUrl
+      "photoUrl": self.photoUrl,
+      "bio": self.bio
     }

@@ -9,7 +9,11 @@ import Sticker from "./Sticker";
 function Stickerbook() {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
-  const userId = sessionUser.id;
+  let userId;
+
+  if (sessionUser) {
+    userId = sessionUser.id;
+  }
 
   useEffect(() => {
     dispatch(getUserStickers(userId));
@@ -29,30 +33,28 @@ function Stickerbook() {
   ];
 
   return (
-    <div className="border">
-      <div className="stickerbook">
-        <div className="line"></div>
-        <FlipPage
-          flipOnTouchZone={4}
-          className="book"
-          disableSwipe
-          flipOnTouch
-          showTouchHint
-          orientation="horizontal"
-          width="800"
-          pageBackground="#fffdf8"
-        >
-          {pages.map((page) => (
-            <article className="article_style">
-              <h1 className="book_title">{page.title}</h1>
-              {sessionStickers &&
-                sessionStickers.stickers.map((sticker) => (
-                  <Sticker sticker={sticker}></Sticker>
-                ))}
-            </article>
-          ))}
-        </FlipPage>
-      </div>
+    <div className="stickerbook">
+      <div className="line"></div>
+      <FlipPage
+        flipOnTouchZone={4}
+        className="book"
+        disableSwipe
+        flipOnTouch
+        showTouchHint
+        orientation="horizontal"
+        responsive
+        pageBackground="#fffdf8"
+      >
+        {pages.map((page) => (
+          <article className="article_style">
+            <h1 className="book_title">{page.title}</h1>
+            {sessionStickers &&
+              sessionStickers.stickers.map((sticker) => (
+                <Sticker sticker={sticker}></Sticker>
+              ))}
+          </article>
+        ))}
+      </FlipPage>
     </div>
   );
 }

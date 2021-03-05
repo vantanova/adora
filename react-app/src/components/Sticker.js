@@ -1,19 +1,33 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { removeUserStickers } from "../store/sticker";
+import { removeUserStickers, getUserStickers } from "../store/sticker";
+import { getAllPosts } from "../store/post";
+import { useHistory } from "react-router-dom";
 import "antd/dist/antd.css";
-import { Popover, Tag, Button, Popconfirm } from "antd";
+import { Popover, Tag, Button, message } from "antd";
 import "./Styling/Stickerbook.css";
-import { BookOutlined } from "@ant-design/icons";
 
 function Sticker({ sticker }) {
+  const history = useHistory();
+  let check;
+  const sessionUser = useSelector((state) => state.session.user);
   const currentPostId = useSelector((state) => state.post.currentPost);
+  const postUserId = useSelector((state) => state.post.posts[currentPostId]);
   const dispatch = useDispatch();
-  console.log(currentPostId);
-  console.log(sticker.id);
+  if (postUserId) {
+    console.log(postUserId.ownerId);
+    check = postUserId.ownerId;
+  }
 
-  function removeSticker() {
-    dispatch(removeUserStickers(sticker.id, currentPostId));
+  async function removeSticker() {
+    if (check === sessionUser.id) {
+      message.warning("You can't sticker your own post silly!");
+      return;
+    }
+    message.success("Sticker given to a great home!");
+    await dispatch(removeUserStickers(sticker.id, currentPostId));
+    await dispatch(getUserStickers(sessionUser.id));
+    await dispatch(getAllPosts());
   }
 
   const useStickerContent = (

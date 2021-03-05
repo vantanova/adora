@@ -49,8 +49,6 @@ const Post = ({ post }) => {
     }
   }
 
-  console.log(post.owner);
-
   const cardTitle = (
     <Meta
       avatar={
@@ -98,7 +96,7 @@ const Post = ({ post }) => {
         closable={false}
         footer={footer}
         width={"90%"}
-        bodyStyle={{ padding: "0" }}
+        bodyStyle={{ padding: "0", width: "800px", height: "500px" }}
         style={{
           marginTop: "-6vh",
           display: "flex",

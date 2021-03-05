@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "antd/dist/antd.css";
 import "./Styling/Post.css";
-import { Card, Avatar, Button, Collapse, Modal, Input } from "antd";
+import { Card, Avatar, Button, Collapse, Modal, Input, message } from "antd";
 import { currentPostId, getAllPosts } from "../store/post";
 import Stickerbook from "./Stickerbook";
 import { LikeTwoTone, BookTwoTone } from "@ant-design/icons";
@@ -39,7 +39,12 @@ const CreatePost = () => {
     dispatch(currentPostId(null));
   };
 
+  console.log(title);
   const onPostCreation = async (e) => {
+    if (!title) {
+      return message.error("Please enter a title!");
+    }
+
     e.preventDefault();
     let data = new FormData();
     data.append("title", title);

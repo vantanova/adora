@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { logout } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Dropdown, Menu } from "antd";
@@ -8,15 +8,17 @@ import { MenuOutlined, PlusOutlined } from "@ant-design/icons";
 
 const LogoutButton = () => {
   const sessionUser = useSelector((state) => state.session.user);
+  const history = useHistory();
 
   const dispatch = useDispatch();
 
   const onLogout = async (e) => {
-    return dispatch(logout());
+    dispatch(logout());
   };
 
   const loggedIn = (
     <Menu>
+      {sessionUser && <Menu.Item>{sessionUser.username}</Menu.Item>}
       <Menu.Item>
         <NavLink to="/profile" exact={true}>
           Profile

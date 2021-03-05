@@ -10,7 +10,6 @@ const { TextArea } = Input;
 function Profile() {
   const sessionUser = useSelector((state) => state.session.user);
   // const [visibleBook, setVisibleBook] = useState(null);
-  console.log(sessionUser);
 
   // function setBook() {
   //   if (visibleBook == null) {

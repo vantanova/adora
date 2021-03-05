@@ -37,6 +37,10 @@ div.ant-modal_body {
 .sticker {
   height: 12vh;
   width: 12vh;
+  margin-left: 3.7vh;
+  margin-right: 2vh;
+  margin-top: 1vh;
+  margin-bottom: 1vh;
 }
 
 .book_title {
@@ -44,7 +48,7 @@ div.ant-modal_body {
 }
 
 .article_style {
-  width: 100vh;
+  width: 100%;
   padding: 10px 20px;
   display: flex;
   flex-direction: row;

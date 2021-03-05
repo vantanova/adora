@@ -19,7 +19,7 @@ function Sticker({ sticker }) {
 
   async function removeSticker() {
     if (check === sessionUser.id) {
-      message.warning("You can't sticker your own post silly!");
+      message.warning("You can't use your sticker on your own post silly!");
       return;
     }
     message.success("Sticker given to a great home!");

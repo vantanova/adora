@@ -25,7 +25,7 @@ function Packs() {
       <Card className="main_profile_content">
         <Row>
           <Col span={24}>
-            <h1 className="stickerpack_title">My Stickerpacks</h1>
+            <h1 className="sticker_title">My Stickerpacks</h1>
             <hr></hr>
             <button className="test"></button>
           </Col>

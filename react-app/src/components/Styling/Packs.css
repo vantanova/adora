@@ -11,11 +11,11 @@
 }
 
 .test {
-  background-image: url("../../images/Stickerpack.png");
+  background-image: url("../../images/Copy\ of\ Sticker.svg");
   background-repeat: no-repeat;
-  background-size: 20vh;
-  width: 20vh;
-  height: 25vh;
+  background-size: 100%;
+  width: 40%;
+  height: 41.5vh;
   border: none;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   padding: 0;
@@ -24,4 +24,9 @@
 
 .test:hover {
   transform: scale(1.01);
+}
+
+.pack {
+  width: 40vh;
+  height: 40vh;
 }

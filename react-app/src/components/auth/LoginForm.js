@@ -75,10 +75,10 @@ const LoginForm = () => {
                 Login
               </Button>
             </div>
-            <div className="redirect">
+            {/* <div className="redirect">
               <p style={{ margin: "0" }}>Don't have an account?</p>
               <Button type="text">Make one here!</Button>
-            </div>
+            </div> */}
           </div>
         </form>
       </Card>

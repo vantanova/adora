@@ -56,7 +56,7 @@ const SignUpForm = () => {
   return (
     <Card>
       <form onSubmit={onSignUp}>
-        <div>
+        <div className="form_input">
           <Input
             placeholder="Username"
             type="text"
@@ -66,7 +66,7 @@ const SignUpForm = () => {
             value={username}
           ></Input>
         </div>
-        <div>
+        <div className="form_input">
           <Input
             placeholder="Email"
             type="text"
@@ -76,7 +76,7 @@ const SignUpForm = () => {
             value={email}
           ></Input>
         </div>
-        <div>
+        <div className="form_input">
           <Input
             placeholder="Password"
             type="password"
@@ -86,7 +86,7 @@ const SignUpForm = () => {
             value={password}
           ></Input>
         </div>
-        <div>
+        <div className="form_input">
           <Input
             placeholder="Confirm Password"
             size="large"
@@ -97,8 +97,26 @@ const SignUpForm = () => {
             required={true}
           ></Input>
         </div>
-        <Button type="submit">Sign Up</Button>
+        <div>
+          <Button
+            type="primary"
+            block={true}
+            htmlType="submit"
+            className="form_input"
+            size="large"
+            style={{
+              background: "rgb(128, 104, 84)",
+              border: "rgb(141, 114, 92)",
+            }}
+          >
+            Sign Up
+          </Button>
+        </div>
       </form>
+      {/* <div className="redirect">
+        <p style={{ margin: "0" }}>Already have an account?</p>
+        <Button type="text">Login here!</Button>
+      </div> */}
     </Card>
   );
 };

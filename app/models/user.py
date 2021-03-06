@@ -2,6 +2,7 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from .user_stickers import user_stickers
+from .user_packs import user_packs
 
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
@@ -10,9 +11,12 @@ class User(db.Model, UserMixin):
   username = db.Column(db.String(100), nullable = False, unique = True)
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
+  status = db.Column(db.String(100), nullable = False)
   bio = db.Column(db.String(500), nullable = True)
   photoUrl = db.Column(db.String, nullable = True)
   stickers = db.relationship("Sticker", lazy="dynamic", secondary=user_stickers,
+                            back_populates="owners")
+  packs = db.relationship("Pack_types", lazy="dynamic", secondary=user_packs,
                             back_populates="owners")
 
 

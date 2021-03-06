@@ -1,8 +1,14 @@
 from .db import db
 
-post_stickers = db.Table(
-    "post_stickers",
-    db.Model.metadata,
-    db.Column("post_id", db.Integer, db.ForeignKey("posts.id")),
-    db.Column("sticker_id", db.Integer, db.ForeignKey("stickers.id"))
-)
+class Post_stickers(db.Models):
+
+    __tablename__ = 'posts'
+
+    id = db.Column(db.Integer, primary_key=True)
+    postId = db.Column("post_id", db.Integer, db.ForeignKey("posts.id")),
+    stickerId = db.Column("sticker_id", db.Integer, db.ForeignKey("stickers.id"))
+
+    def to_dict(self):
+        return {
+            "id": self.id,
+        }

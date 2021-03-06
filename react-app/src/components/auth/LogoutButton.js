@@ -1,14 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { logout } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Dropdown, Menu } from "antd";
+import { Button, Dropdown, Menu, Modal } from "antd";
 import "antd/dist/antd.css";
 import { MenuOutlined, PlusOutlined } from "@ant-design/icons";
+import LoginForm from "./LoginForm";
+import SignUpForm from "./SignUpForm";
 
 const LogoutButton = () => {
   const history = useHistory();
   const sessionUser = useSelector((state) => state.session.user);
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isSignUpModalVisible, setIsSignUpModalVisible] = useState(false);
+
+  const showSignUpModal = () => {
+    setIsSignUpModalVisible(true);
+  };
+  const showModal = () => {
+    setIsModalVisible(true);
+  };
+
+  const handleOk = () => {
+    setIsModalVisible(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalVisible(false);
+  };
+  const handleSignUpCancel = () => {
+    setIsSignUpModalVisible(false);
+  };
 
   const dispatch = useDispatch();
 
@@ -39,14 +62,14 @@ const LogoutButton = () => {
   const signedOut = (
     <Menu>
       <Menu.Item key="2" style={{ border: "none" }}>
-        <NavLink to="/login" exact={true} activeClassName="active">
+        <Button type="text" onClick={showModal}>
           Login
-        </NavLink>
+        </Button>
       </Menu.Item>
       <Menu.Item key="3" style={{ border: "none" }}>
-        <NavLink to="/sign-up" exact={true} activeClassName="active">
+        <Button type="text" onClick={showSignUpModal}>
           Sign Up
-        </NavLink>
+        </Button>
       </Menu.Item>
     </Menu>
   );
@@ -94,6 +117,38 @@ const LogoutButton = () => {
           <MenuOutlined />
         </Button>
       </Dropdown>
+      <Modal
+        title="Login"
+        visible={isModalVisible}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        bodyStyle={{ padding: "0" }}
+        footer={null}
+      >
+        <LoginForm></LoginForm>
+        {sessionUser && (
+          <div style={{ padding: "10vh" }}>
+            <p>{`You are now logged in as ${sessionUser.username}!`}</p>
+            <p>Click anywhere to exit!</p>
+          </div>
+        )}
+      </Modal>
+      <Modal
+        title="Sign Up"
+        visible={isSignUpModalVisible}
+        onOk={handleOk}
+        onCancel={handleSignUpCancel}
+        bodyStyle={{ padding: "0" }}
+        footer={null}
+      >
+        <SignUpForm></SignUpForm>
+        {sessionUser && (
+          <div style={{ padding: "10vh" }}>
+            <p>{`You are now logged in as ${sessionUser.username}!`}</p>
+            <p>Click anywhere to exit!</p>
+          </div>
+        )}
+      </Modal>
     </div>
   );
 };

@@ -1,18 +1,22 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
+import { Card, Button, Input, Modal } from "antd";
+import "../Styling/Form.css";
 
 const LoginForm = () => {
   // const [errors, setErrors] = useState([]);
+  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
 
-  function onLogin(e) {
+  async function onLogin(e) {
     e.preventDefault();
-    dispatch(login({ email, password }));
+    await dispatch(login({ email, password }));
+    return <p>Hi</p>;
   }
 
   const updateEmail = (e) => {
@@ -28,34 +32,57 @@ const LoginForm = () => {
   }
 
   return (
-    <form onSubmit={onLogin} style={{ marginTop: "10vh" }}>
-      <div>
-        {/* {errors.map((error) => (
-          <div>{error}</div>
-        ))} */}
-      </div>
-      <div>
-        <label htmlFor="email">Email</label>
-        <input
-          name="email"
-          type="text"
-          placeholder="Email"
-          value={email}
-          onChange={updateEmail}
-        />
-      </div>
-      <div>
-        <label htmlFor="password">Password</label>
-        <input
-          name="password"
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={updatePassword}
-        />
-        <button type="submit">Login</button>
-      </div>
-    </form>
+    <div className="login_content">
+      <Card>
+        <form onSubmit={onLogin}>
+          <div>
+            {/* {errors.map((error) => (
+              <div>{error}</div>
+            ))} */}
+          </div>
+          <div>
+            <Input
+              name="email"
+              type="text"
+              size="large"
+              placeholder="Email"
+              value={email}
+              className="form_input"
+              onChange={updateEmail}
+            />
+          </div>
+          <div className="form_input">
+            <Input
+              name="password"
+              type="password"
+              size="large"
+              placeholder="Password"
+              value={password}
+              onChange={updatePassword}
+            />
+            <div>
+              <Button
+                type="primary"
+                block={true}
+                htmlType="submit"
+                className="form_input"
+                size="large"
+                style={{
+                  background: "rgb(128, 104, 84)",
+                  border: "rgb(141, 114, 92)",
+                }}
+              >
+                Login
+              </Button>
+            </div>
+            <div className="redirect">
+              <p style={{ margin: "0" }}>Don't have an account?</p>
+              <Button type="text">Make one here!</Button>
+            </div>
+          </div>
+        </form>
+      </Card>
+    </div>
   );
 };
 

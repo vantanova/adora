@@ -1,0 +1,13 @@
+/* .login_content {
+} */
+
+.form_input {
+  margin-top: 3vh;
+}
+
+.redirect {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 3vh;
+}

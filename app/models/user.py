@@ -1,8 +1,9 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from .user_stickers import user_stickers
-from .user_packs import user_packs
+from .user_stickers import User_sticker
+from .user_packs import User_pack
+from .post_likes import post_likes
 
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
@@ -11,13 +12,15 @@ class User(db.Model, UserMixin):
   username = db.Column(db.String(100), nullable = False, unique = True)
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
-  status = db.Column(db.String(100), nullable = False)
+  status = db.Column(db.String(100), nullable = True)
   bio = db.Column(db.String(500), nullable = True)
   photoUrl = db.Column(db.String, nullable = True)
-  stickers = db.relationship("Sticker", lazy="dynamic", secondary=user_stickers,
+  stickers = db.relationship("Sticker", lazy="dynamic", secondary="user_stickers",
                             back_populates="owners")
-  packs = db.relationship("Pack_types", lazy="dynamic", secondary=user_packs,
+  packs = db.relationship("Pack_type", lazy="dynamic", secondary="user_packs",
                             back_populates="owners")
+  post_likes = db.relationship("Post", lazy="dynamic", secondary=post_likes,
+                            back_populates="user_likes")
 
 
   @property

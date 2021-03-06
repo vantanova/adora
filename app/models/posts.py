@@ -1,5 +1,6 @@
 from .db import db
-from .post_stickers import post_stickers
+from .post_sticker import Post_sticker
+from .post_likes import post_likes
 
 class Post(db.Model):
     __tablename__ = 'posts'
@@ -13,7 +14,10 @@ class Post(db.Model):
     ownerId = db.Column(
         db.Integer, db.ForeignKey("users.id"), nullable=False)
     user = db.relationship("User", cascade="all,delete")
-    stickers = db.relationship("Sticker",  lazy="dynamic", secondary=post_stickers, back_populates="posts")
+    stickers = db.relationship("Sticker",  lazy="dynamic", secondary="post_stickers", back_populates="posts")
+    user_likes = db.relationship("User", lazy="dynamic", secondary=post_likes,
+                        back_populates="post_likes")
+
 
     def to_dict(self):
         return {

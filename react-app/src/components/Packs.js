@@ -25,8 +25,9 @@ function Packs() {
       <Card className="main_profile_content">
         <Row>
           <Col span={24}>
-            <h1>Open a sticker pack!</h1>
-            <img src="../images/Stickerpack.png"></img>
+            <h1 className="stickerpack_title">My Stickerpacks</h1>
+            <hr></hr>
+            <button className="test"></button>
           </Col>
         </Row>
       </Card>

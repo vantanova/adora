@@ -1,3 +1,27 @@
 .Packs {
   margin-top: 7vh;
 }
+
+.pack {
+  width: 30vh;
+}
+
+.stickerpack_title {
+  color: rgb(69, 56, 35);
+}
+
+.test {
+  background-image: url("../../images/Stickerpack.png");
+  background-repeat: no-repeat;
+  background-size: 20vh;
+  width: 20vh;
+  height: 25vh;
+  border: none;
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+  padding: 0;
+  transition: all 0.2s ease-in-out;
+}
+
+.test:hover {
+  transform: scale(1.01);
+}

@@ -63,17 +63,19 @@ const Post = ({ post }) => {
   }
 
   const cardTitle = (
-    <Meta
-      avatar={
-        <Avatar
-          src={post.owner.photoUrl}
-          size={50}
-          style={{ marginTop: "2px" }}
-        />
-      }
-      title={post.title}
-      description={<p className="description">{post.owner.username}</p>}
-    />
+    <button className="user_link">
+      <Meta
+        avatar={
+          <Avatar
+            src={post.owner.photoUrl}
+            size={50}
+            style={{ marginTop: "2px" }}
+          />
+        }
+        title={post.title}
+        description={<p className="description">{post.owner.username}</p>}
+      />
+    </button>
   );
 
   const likeActions = (

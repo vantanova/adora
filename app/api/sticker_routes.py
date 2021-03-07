@@ -10,8 +10,10 @@ sticker_routes = Blueprint('stickers', __name__)
 def user_projects(userId):
     user = User.query.get(userId)
     data = user.stickers
+    stickers = User_sticker.query.filter_by(userId = current_user.id).all()
+    actualSticker = [Sticker.query.get(sticker.stickerId) for sticker in stickers]
 
-    return {"stickers": [sticker.to_dict() for sticker in data]}
+    return {"stickers": [sticker.to_dict() for sticker in actualSticker]}
 
 @sticker_routes.route('/<stickerId>/<postId>', methods=["DELETE"])
 @login_required

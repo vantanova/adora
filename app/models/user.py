@@ -2,8 +2,10 @@ from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from .user_stickers import User_sticker
+from .stickers import Sticker
 from .user_packs import User_pack
 from .post_likes import post_likes
+from app.models import user_stickers
 
 class User(db.Model, UserMixin):
   __tablename__ = 'users'
@@ -23,6 +25,12 @@ class User(db.Model, UserMixin):
                             back_populates="user_likes")
 
 
+  def users_stickers(self):
+          stickers = User_sticker.query.filter_by(userId = self.id).all()
+          actualSticker = [Sticker.query.get(sticker.stickerId) for sticker in stickers]
+
+          return actualSticker
+
   @property
   def password(self):
     return self.hashed_password
@@ -38,10 +46,14 @@ class User(db.Model, UserMixin):
 
 
   def to_dict(self):
+
+    actual = self.users_stickers()
+
     return {
       "id": self.id,
       "username": self.username,
       "email": self.email,
       "photoUrl": self.photoUrl,
-      "bio": self.bio
+      "bio": self.bio,
+      "stickers": [sticker.to_dict() for sticker in actual]
     }

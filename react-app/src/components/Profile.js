@@ -20,23 +20,24 @@ function Profile() {
   // }
 
   return (
-    <Card className="main_profile_content">
-      <Row>
-        <Col span={8}>
-          <Card
-            className="profile_card"
-            cover={<img alt="example" src={sessionUser.photoUrl} />}
-          >
-            <Meta title={<h3>{sessionUser.username}</h3>} />
-          </Card>
-        </Col>
-        <Col className="about">
-          <h3>About me</h3>
-          <TextArea showCount maxLength="500" className="textarea"></TextArea>
-          {/* <p>{sessionUser.bio}</p> */}
-        </Col>
-      </Row>
-      {/* <Row>
+    sessionUser && (
+      <Card className="main_profile_content">
+        <Row>
+          <Col span={8}>
+            <Card
+              className="profile_card"
+              cover={<img alt="example" src={sessionUser.photoUrl} />}
+            >
+              <Meta title={<h3>{sessionUser.username}</h3>} />
+            </Card>
+          </Col>
+          <Col className="about">
+            <h3>About me</h3>
+            <TextArea showCount maxLength="500" className="textarea"></TextArea>
+            {/* <p>{sessionUser.bio}</p> */}
+          </Col>
+        </Row>
+        {/* <Row>
         <Col span={4}>
           <div className="flex">
             <Tooltip title="My Stickers" placement="bottom">
@@ -71,7 +72,8 @@ function Profile() {
           {visibleBook}
         </Col>
       </Row> */}
-    </Card>
+      </Card>
+    )
   );
 }
 

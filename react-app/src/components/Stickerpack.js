@@ -2,13 +2,11 @@ import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Card, Row, Col, Input } from "antd";
 import "./Styling/Packs.css";
-import "./Stickerpack";
-import Stickerpack from "./Stickerpack";
 
 const { Meta } = Card;
 const { TextArea } = Input;
 
-function Packs() {
+function Stickerpack() {
   const sessionUser = useSelector((state) => state.session.user);
   const userId = sessionUser.id;
   console.log(userId);
@@ -23,18 +21,10 @@ function Packs() {
   }
 
   return (
-    <div className="Packs">
-      <Card className="main_profile_content">
-        <Row>
-          <Col span={24}>
-            <h1 className="sticker_title">My Stickerpacks</h1>
-            <hr></hr>
-            <Stickerpack></Stickerpack>
-          </Col>
-        </Row>
-      </Card>
+    <div>
+      <button className="test"></button>
     </div>
   );
 }
 
-export default Packs;
+export default Stickerpack;

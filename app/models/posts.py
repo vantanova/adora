@@ -1,6 +1,8 @@
 from .db import db
 from .post_sticker import Post_sticker
 from .post_likes import post_likes
+from .stickers import Sticker
+from app.models import post_sticker
 
 class Post(db.Model):
     __tablename__ = 'posts'
@@ -19,7 +21,17 @@ class Post(db.Model):
                         back_populates="post_likes")
 
 
+
+    def post_stickers(self):
+        stickers = Post_sticker.query.filter_by(postId = self.id).all()
+        actualSticker = [Sticker.query.get(sticker.stickerId) for sticker in stickers]
+
+        return actualSticker
+
     def to_dict(self):
+
+        actual = self.post_stickers()
+
         return {
             "id": self.id,
             "title": self.title,
@@ -28,5 +40,5 @@ class Post(db.Model):
             "ownerId": self.ownerId,
             "owner": self.user.to_dict(),
             "likes": self.likes,
-            "stickers": [sticker.to_dict() for sticker in self.stickers]
+            "stickers": [sticker.to_dict() for sticker in actual]
         }

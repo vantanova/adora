@@ -2,7 +2,7 @@
   /* background-color: rgba(255, 228, 196, 0.281); */
   /* padding: 5vh; */
   width: 50rem;
-  height: 80vh;
+  /* height: 80vh; */
   margin-left: auto;
   margin-right: auto;
   margin-top: 9vh;
@@ -11,7 +11,13 @@
 
 .profile_card {
   width: 240px;
-  box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+
+.profile_photo {
+  /* box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px; */
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  width: 25vh;
+  height: 25vh;
 }
 
 .about {
@@ -23,7 +29,7 @@
 }
 
 textarea.ant-input {
-  height: 19vh;
+  height: 15vh;
 }
 
 .flex {

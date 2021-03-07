@@ -1,6 +1,8 @@
+from app.models.user_stickers import User_sticker
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 from app.models import Sticker, Pack_type, db, User, User_pack
+import random
 
 stickerpacks_routes = Blueprint('stickerpacks', __name__)
 
@@ -20,11 +22,19 @@ def user_stickerpacks(userId):
 def redeem_user_stickerpacks(packTypeId):
     row = User_pack.query.filter_by(userId = current_user.id, packTypesId = packTypeId).first()
     pack = Pack_type.query.get(packTypeId)
+    numOfRows = Sticker.query.count()
+    randomInt = random.randint(0,numOfRows)
 
-    print("---------------", pack.to_dict())
+    newSticker = Sticker.query.get(randomInt)
+
+    current_user.stickers.append(newSticker)
+
+    db.session.delete(row)
+    db.session.commit()
+
     # actualStickerpacks = [Pack_type.query.get(stickerpack.packTypesId) for stickerpack in stickers]
 
-    return pack.to_dict()
+    return newSticker.to_dict()
 
 # @sticker_routes.route('/<stickerId>/<postId>', methods=["DELETE"])
 # @login_required

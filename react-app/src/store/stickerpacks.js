@@ -22,6 +22,7 @@ export const redeemUserStickerpacks = (packTypeId) => async (dispatch) => {
   });
   const data = await res.json();
   console.log(data);
+  return data;
   // dispatch(removeSticker(data));
 };
 

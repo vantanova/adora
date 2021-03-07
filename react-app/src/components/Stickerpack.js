@@ -3,15 +3,20 @@ import { useSelector, useDispatch } from "react-redux";
 import { Card, Row, Col, Input, Modal, Popconfirm, message, Spin } from "antd";
 import "./Styling/Packs.css";
 import { LoadingOutlined } from "@ant-design/icons";
-import { redeemUserStickerpacks } from "../store/stickerpacks";
+import {
+  redeemUserStickerpacks,
+  getUserStickerpacks,
+} from "../store/stickerpacks";
+import { getUserStickers } from "../store/sticker";
+import { useHistory } from "react-router-dom";
 
 const { Meta } = Card;
 const { TextArea } = Input;
 
 function Stickerpack(props) {
-  console.log(props.props);
+  const history = useHistory();
   const stickerpack = props.props;
-  console.log(stickerpack.photoUrl);
+  const sessionUser = useSelector((state) => state.session.user);
 
   const dispatch = useDispatch();
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -29,11 +34,18 @@ function Stickerpack(props) {
     </div>
   );
 
-  const showModal = () => {
+  const showModal = async () => {
     setIsModalVisible(true);
-    setTimeout(() => {
-      dispatch(redeemUserStickerpacks(stickerpack.id));
-      setSetIsLoading(<p>Wow!</p>);
+    setTimeout(async () => {
+      const results = await dispatch(redeemUserStickerpacks(stickerpack.id));
+      await dispatch(getUserStickers(sessionUser.id));
+      await console.log(results.photoUrl);
+      setSetIsLoading(
+        <div className="results">
+          <h1>You got {results.title}!</h1>
+          <img className="sticker" alt="sticker" src={results.photoUrl}></img>
+        </div>
+      );
     }, 5000);
   };
 
@@ -42,6 +54,7 @@ function Stickerpack(props) {
   };
 
   const handleCancel = () => {
+    dispatch(getUserStickerpacks(stickerpack.id));
     setIsModalVisible(false);
   };
 

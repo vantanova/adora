@@ -39,3 +39,18 @@
   align-items: center;
   flex-direction: column;
 }
+
+.sticker_prize {
+  width: 40vh;
+  height: 40vh;
+}
+
+.results {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.main_profile_content {
+  height: 55vh;
+}

@@ -6,6 +6,7 @@ import { Card, Avatar, Button, Collapse, Modal } from "antd";
 import { currentPostId, addLike } from "../store/post";
 import Stickerbook from "./Stickerbook";
 import MiniStickebook from "./MiniStickerbook";
+import MiniProfile from "./MiniProfile";
 import { LikeTwoTone, BookTwoTone, DeleteOutlined } from "@ant-design/icons";
 
 const { Panel } = Collapse;
@@ -21,11 +22,22 @@ const Post = ({ post }) => {
 
   const [visible, setVisible] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
+  const [isProfileModalVisible, setIsProfileModalVisible] = useState(false);
+
+  const showProfile = () => {
+    console.log("hit");
+    setIsProfileModalVisible(true);
+  };
 
   const showModal = () => {
     setIsModalVisible(true);
     dispatch(currentPostId(post.id));
   };
+
+  const handleProfileCancel = () => {
+    setIsProfileModalVisible(false);
+  };
+
   const handleCancel = () => {
     setIsModalVisible(false);
     dispatch(currentPostId(null));
@@ -63,7 +75,7 @@ const Post = ({ post }) => {
   }
 
   const cardTitle = (
-    <button className="user_link">
+    <button onClick={showProfile} className="user_link">
       <Meta
         avatar={
           <Avatar
@@ -156,6 +168,15 @@ const Post = ({ post }) => {
             </Panel>
           </Collapse>
         </Card>
+        <Modal
+          visible={isProfileModalVisible}
+          onCancel={handleProfileCancel}
+          footer={null}
+          bodyStyle={{ padding: "0" }}
+          width={"90vh"}
+        >
+          <MiniProfile profile={post}></MiniProfile>
+        </Modal>
       </div>
     )
   );

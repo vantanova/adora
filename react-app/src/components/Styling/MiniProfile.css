@@ -1,0 +1,22 @@
+.post_profile_content {
+  height: 80vh;
+}
+
+.status {
+  margin: 1vh;
+  color: rgba(51, 51, 51, 0.603);
+}
+
+.profile_flex {
+  height: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.about {
+  height: 20vh;
+}
+
+.mini_profile_photo {
+  height: 20vh;
+}

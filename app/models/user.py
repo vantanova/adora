@@ -55,5 +55,6 @@ class User(db.Model, UserMixin):
       "email": self.email,
       "photoUrl": self.photoUrl,
       "bio": self.bio,
+      "status": self.status,
       "stickers": [sticker.to_dict() for sticker in actual]
     }

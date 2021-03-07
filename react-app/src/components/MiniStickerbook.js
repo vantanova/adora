@@ -21,9 +21,9 @@ function MiniStickebook({ stickers }) {
   return (
     <div className="MiniStickebook">
       {stickers &&
-        stickers.map((sticker) => {
+        stickers.map((sticker, index) => {
           return (
-            <div key={sticker.id}>
+            <div key={index}>
               <Tooltip
                 placement="bottom"
                 color={"white"}

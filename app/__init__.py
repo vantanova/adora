@@ -10,6 +10,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.sticker_routes import sticker_routes
 from .api.post_routes import post_routes
+from .api.stickerpacks_routes import stickerpacks_routes
 
 from .seeds import seed_commands
 
@@ -35,6 +36,7 @@ app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(sticker_routes, url_prefix='/api/stickers')
 app.register_blueprint(post_routes, url_prefix='/api/posts')
+app.register_blueprint(stickerpacks_routes, url_prefix='/api/stickerpacks')
 db.init_app(app)
 Migrate(app, db, compare_type=True)
 

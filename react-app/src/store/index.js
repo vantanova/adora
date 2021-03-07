@@ -3,6 +3,7 @@ import thunk from "redux-thunk";
 import session from "./session";
 import users from "./users";
 import sticker from "./sticker";
+import stickerpacks from "./stickerpacks";
 import post from "./post";
 
 const rootReducer = combineReducers({
@@ -10,6 +11,7 @@ const rootReducer = combineReducers({
   users,
   sticker,
   post,
+  stickerpacks,
 });
 
 let enhancer;

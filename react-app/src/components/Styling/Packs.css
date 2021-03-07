@@ -10,23 +10,32 @@
   color: rgb(69, 56, 35);
 }
 
-.test {
-  background-image: url("../../images/Copy\ of\ Sticker.svg");
-  background-repeat: no-repeat;
-  background-size: 100%;
-  width: 40%;
-  height: 41.5vh;
+.stickerpack {
+  outline: none;
+  margin-right: 2vh;
+  height: 39vh;
   border: none;
   box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   padding: 0;
   transition: all 0.2s ease-in-out;
 }
 
-.test:hover {
+.stickerpack:hover {
   transform: scale(1.01);
 }
 
 .pack {
   width: 40vh;
   height: 40vh;
+}
+
+.stickerpacks_scroll {
+  display: flex;
+}
+
+.sticker_load {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }

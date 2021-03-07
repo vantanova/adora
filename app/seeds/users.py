@@ -5,9 +5,13 @@ from app.models import db, User
 def seed_users():
 
     demo = User(username='Demo', email='demo@aa.io',
-                password='password')
+                password='password', bio="Wow I sure love the weather!", photoUrl="https://pbs.twimg.com/profile_images/1342768807891378178/8le-DzgC.jpg")
+    demo1 = User(username='RocketProG', email='anguilar@aol.com',
+                password='password', bio="I love spaghetti!", photoUrl="https://chordify.net/pages/wp-content/uploads/2019/08/random-chiasso-1024x683.png")
+
 
     db.session.add(demo)
+    db.session.add(demo1)
 
     db.session.commit()
 

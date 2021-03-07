@@ -1,25 +1,27 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Card, Row, Col, Input } from "antd";
 import "./Styling/Packs.css";
 import "./Stickerpack";
 import Stickerpack from "./Stickerpack";
+import { getUserStickerpacks } from "../store/stickerpacks";
 
 const { Meta } = Card;
 const { TextArea } = Input;
 
 function Packs() {
+  const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
   const userId = sessionUser.id;
   console.log(userId);
 
-  //   useEffect(() => {
-  //     dispatch(getUserStickers(userId));
-  //   }, [dispatch]);
+  useEffect(() => {
+    dispatch(getUserStickerpacks(userId));
+  }, [dispatch]);
+  const sessionPacks = useSelector((state) => state.stickerpacks.stickerpacks);
 
-  const sessionStickers = useSelector((state) => state.sticker.sticker);
-  if (sessionStickers) {
-    console.log(sessionStickers.stickers);
+  if (sessionPacks) {
+    console.log(sessionPacks.stickerpacks);
   }
 
   return (
@@ -29,7 +31,12 @@ function Packs() {
           <Col span={24}>
             <h1 className="sticker_title">My Stickerpacks</h1>
             <hr></hr>
-            <Stickerpack></Stickerpack>
+            <div className="stickerpacks_scroll">
+              {sessionPacks &&
+                sessionPacks.stickerpacks.map((stickerpack) => {
+                  return <Stickerpack props={stickerpack}></Stickerpack>;
+                })}
+            </div>
           </Col>
         </Row>
       </Card>

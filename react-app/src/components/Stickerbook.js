@@ -20,9 +20,6 @@ function Stickerbook() {
   }, [userId, dispatch]);
 
   const sessionStickers = useSelector((state) => state.sticker.sticker);
-  if (sessionStickers) {
-    console.log(sessionStickers.stickers);
-  }
 
   const pages = [
     { title: "My Stickers", content: "Content content content" },

@@ -13,6 +13,7 @@ export const setFile = (formData) => ({
   type: SET_FILE,
   payload: formData,
 });
+
 const allPosts = (posts) => ({
   type: GET_ALL_POST,
   payload: posts,
@@ -22,9 +23,6 @@ const setPost = (post) => ({
   payload: post,
 });
 
-// const removeSticker = () => ({
-//   type: REMOVE_STICKER,
-// });
 export const addLike = (id) => async (dispatch) => {
   const res = await fetch(`/api/posts/add_like/${id}`);
   const data = await res.json();

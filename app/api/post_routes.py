@@ -27,6 +27,16 @@ def posts():
 
     return {post.id:post.to_dict() for post in posts}
 
+@post_routes.route('/<postId>', methods=["DELETE"])
+def delete_post(postId):
+    postToDelete = Post.query.get(postId)
+    # print("--------------------",postToDelete.to_dict())
+    Post.query.filter_by(id=postId).delete()
+    # db.session.delete(postToDelete)
+    db.session.commit()
+
+    return "hi"
+
 @post_routes.route('/add_like/<id>')
 @login_required
 def add_like_post(id):

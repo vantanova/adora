@@ -13,7 +13,6 @@ function Sticker({ sticker }) {
   const postUserId = useSelector((state) => state.post.posts[currentPostId]);
   const dispatch = useDispatch();
   if (postUserId) {
-    console.log(postUserId.ownerId);
     check = postUserId.ownerId;
   }
 

@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import Sticker, Post, db, User, user_stickers
+from app.models import Sticker, Post, db, User, User_sticker
 
 sticker_routes = Blueprint('stickers', __name__)
 
@@ -21,12 +21,16 @@ def sticker__to_post(stickerId, postId):
     user = User.query.get(current_user.id)
     new_owner = User.query.get(post.ownerId)
     print(new_owner.to_dict())
-    user.stickers.remove(sticker)
+
+    row = User_sticker.query.filter_by(stickerId = stickerId, userId = current_user.id).first()
+
+    print("-----------------", row.id)
+    User_sticker.query.filter_by(id=row.id).delete()
     post.stickers.append(sticker)
     new_owner.stickers.append(sticker)
-    # post.stickers.add()
+    # # post.stickers.add()
 
-    # post
+    # # post
 
 
     db.session.commit()

@@ -63,7 +63,10 @@ function MiniProfile(post) {
               <TabPane tab={`${userProfile.owner.username}'s Likes`} key="2">
                 Content of Tab Pane 2
               </TabPane>
-              <TabPane tab={`${userProfile.owner.username}'s Stamps`} key="3">
+              <TabPane
+                tab={`${userProfile.owner.username}'s Stickerpacks`}
+                key="3"
+              >
                 Content of Tab Pane 3
               </TabPane>
             </Tabs>

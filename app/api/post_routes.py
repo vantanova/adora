@@ -1,7 +1,7 @@
 from operator import pos
 from flask import Blueprint, jsonify, request, redirect
-from flask_login import login_required
-from app.models import db, Post, User
+from flask_login import login_required, current_user
+from app.models import db, Post, User, post_likes
 from werkzeug.utils import secure_filename
 from ..forms.post_form import PostForm
 from ..helpers import *
@@ -41,8 +41,10 @@ def delete_post(postId):
 @login_required
 def add_like_post(id):
     post = Post.query.get(id)
-    post.likes += 1
-    db.session.add(post)
+
+    post.user_likes.append(current_user)
+
+    # db.session.add(post)
     db.session.commit()
     print ("--------------------", post.to_dict())
 

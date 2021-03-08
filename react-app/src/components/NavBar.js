@@ -2,11 +2,12 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { NavLink, useLocation } from "react-router-dom";
 import LogoutButton from "./auth/LogoutButton";
-import { Button, Menu, Modal } from "antd";
+import { Button, Menu, Modal, Input } from "antd";
 import "./authStyling/Navbar.css";
 import "../components/Stickerbook";
 import "antd/dist/antd.css";
 import Stickerbook from "../components/Stickerbook";
+import Searchbar from "../components/Searchbar";
 
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
@@ -82,7 +83,7 @@ const NavBar = () => {
           <Menu.Item key="5" style={{ border: "none" }}>
             <Button
               type="text"
-              style={{ marginLeft: "-2vh" }}
+              style={{ marginLeft: "-2vh", color: "#453823" }}
               onClick={showModal}
             >
               Stickerbook
@@ -101,6 +102,17 @@ const NavBar = () => {
             >
               <Stickerbook></Stickerbook>
             </Modal>
+          </Menu.Item>
+        )}
+        {sessionUser && (
+          <Menu.Item
+            key="9"
+            style={{
+              border: "none",
+              float: "right",
+            }}
+          >
+            <Searchbar></Searchbar>
           </Menu.Item>
         )}
       </Menu>

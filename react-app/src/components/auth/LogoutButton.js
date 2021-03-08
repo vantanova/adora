@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { logout } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Dropdown, Menu, Modal } from "antd";
+import { Button, Dropdown, Menu, Modal, message } from "antd";
 import "antd/dist/antd.css";
 import { MenuOutlined, PlusOutlined } from "@ant-design/icons";
 import LoginForm from "./LoginForm";
@@ -36,6 +36,7 @@ const LogoutButton = () => {
   const dispatch = useDispatch();
 
   const onLogout = async (e) => {
+    message.success("Logged out!");
     await dispatch(logout());
     history.push("/");
   };

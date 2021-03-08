@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import LogoutButton from "./auth/LogoutButton";
 import { Button, Menu, Modal } from "antd";
 import "./authStyling/Navbar.css";
@@ -11,7 +11,8 @@ import Stickerbook from "../components/Stickerbook";
 const NavBar = () => {
   const sessionUser = useSelector((state) => state.session.user);
   const [isModalVisible, setIsModalVisible] = useState(false);
-
+  let test = useLocation();
+  console.log(test.pathname);
   const showModal = () => {
     setIsModalVisible(true);
   };
@@ -77,7 +78,7 @@ const NavBar = () => {
         <Menu.Item key="7" style={{ border: "none", float: "right" }}>
           <LogoutButton />
         </Menu.Item>
-        {sessionUser && (
+        {sessionUser && !(test.pathname === "/packs") && (
           <Menu.Item key="5" style={{ border: "none" }}>
             <Button
               type="text"

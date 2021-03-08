@@ -1,17 +1,13 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import { Card, Row, Col, Input, Tooltip, Button, Tabs } from "antd";
+import React from "react";
+import { Card, Row, Col, Tabs } from "antd";
 import "./Styling/MiniProfile.css";
 import ProfileStickerbook from "./ProfileStickerbook";
-import { BookTwoTone, LikeTwoTone } from "@ant-design/icons";
+
 import Avatar from "antd/lib/avatar/avatar";
 
-const { Meta } = Card;
-const { TextArea } = Input;
 const { TabPane } = Tabs;
 
 function MiniProfile(post) {
-  console.log(post.profile);
   const userProfile = post.profile;
 
   function callback(key) {

@@ -40,3 +40,32 @@ textarea.ant-input {
   /* justify-content: space-around; */
   height: 100%;
 }
+
+input[type="file"] {
+  opacity: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+input[type="file"] + label {
+  line-height: 1.5715;
+  position: relative;
+  display: inline-block;
+  font-weight: 400;
+  white-space: nowrap;
+  text-align: center;
+  color: #fff;
+  background: rgb(128, 104, 84);
+  border-color: rgb(141, 114, 92);
+  text-shadow: 0 -1px 0 rgb(0 0 0 / 12%);
+  box-shadow: 0 2px 0 rgb(0 0 0 / 5%);
+  outline: 0;
+  border: 1px solid rgb(141, 114, 92);
+  cursor: pointer;
+  touch-action: manipulation;
+  height: 32px;
+  padding: 4px 15px;
+  font-size: 14px;
+  border-radius: 2px;
+  margin-left: 3.5vh;
+}

@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 const Home = () => {
   const dispatch = useDispatch();
   const [allPostsArr, setAllPostsArr] = useState();
-  const [searchPostsArr, setSearchPostsArr] = useState();
+  // const [searchPostsArr, setSearchPostsArr] = useState();
   useEffect(() => {
     dispatch(getAllPosts());
     dispatch(setFile(null));

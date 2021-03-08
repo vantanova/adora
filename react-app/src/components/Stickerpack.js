@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Card, Row, Col, Input, Modal, Popconfirm, message, Spin } from "antd";
+import { Modal, Popconfirm, Spin } from "antd";
 import "./Styling/Packs.css";
 import { LoadingOutlined } from "@ant-design/icons";
 import {
@@ -8,15 +8,21 @@ import {
   getUserStickerpacks,
 } from "../store/stickerpacks";
 import { getUserStickers } from "../store/sticker";
-import { useHistory } from "react-router-dom";
-
-const { Meta } = Card;
-const { TextArea } = Input;
+// import { useHistory } from "react-router-dom";
 
 function Stickerpack(props) {
-  const history = useHistory();
+  // const history = useHistory();
   const stickerpack = props.props;
   const sessionUser = useSelector((state) => state.session.user);
+
+  function wait(ms) {
+    return new Promise((resolve, reject) => {
+      setTimeout(() => {
+        console.log("Done waiting");
+        resolve(ms);
+      }, ms);
+    });
+  }
 
   const dispatch = useDispatch();
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -36,17 +42,14 @@ function Stickerpack(props) {
 
   const showModal = async () => {
     setIsModalVisible(true);
-    setTimeout(async () => {
-      const results = await dispatch(redeemUserStickerpacks(stickerpack.id));
-      await dispatch(getUserStickers(sessionUser.id));
-      await console.log(results.photoUrl);
-      setSetIsLoading(
-        <div className="results">
-          <h1>You got {results.title}!</h1>
-          <img className="sticker" alt="sticker" src={results.photoUrl}></img>
-        </div>
-      );
-    }, 5000);
+    const results = await dispatch(redeemUserStickerpacks(stickerpack.id));
+    await wait(5000);
+    await setSetIsLoading(
+      <div className="results">
+        <h1>You got {results.title}!</h1>
+        <img className="sticker" alt="sticker" src={results.photoUrl}></img>
+      </div>
+    );
   };
 
   const handleOk = () => {
@@ -57,11 +60,6 @@ function Stickerpack(props) {
     dispatch(getUserStickerpacks(stickerpack.id));
     setIsModalVisible(false);
   };
-
-  function confirm(e) {
-    console.log(e);
-    message.success("Click on Yes");
-  }
 
   return (
     <div>

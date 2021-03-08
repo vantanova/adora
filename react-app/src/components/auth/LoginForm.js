@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { Redirect, useHistory } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import { login } from "../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { Card, Button, Input, Modal } from "antd";
+import { Card, Button, Input } from "antd";
 import "../Styling/Form.css";
 
 const LoginForm = () => {
   // const [errors, setErrors] = useState([]);
-  const history = useHistory();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();

@@ -59,6 +59,14 @@ export const photoUpload = (file) => async (dispatch) => {
   }
 };
 
+export const changeBio = (bio) => async (dispatch) => {
+  console.log(bio);
+  const res = await fetch("/api/users/update/bio", {
+    method: "POST",
+    body: JSON.stringify(bio),
+  });
+};
+
 export const logout = () => async (dispatch) => {
   const res = await fetch("/api/auth/logout");
 

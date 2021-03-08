@@ -1,13 +1,10 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Card, Row, Col, Input } from "antd";
+import { Card, Row, Col } from "antd";
 import "./Styling/Packs.css";
 import "./Stickerpack";
 import Stickerpack from "./Stickerpack";
 import { getUserStickerpacks } from "../store/stickerpacks";
-
-const { Meta } = Card;
-const { TextArea } = Input;
 
 function Packs() {
   const dispatch = useDispatch();
@@ -17,7 +14,7 @@ function Packs() {
 
   useEffect(() => {
     dispatch(getUserStickerpacks(userId));
-  }, [dispatch]);
+  }, [dispatch, userId]);
   const sessionPacks = useSelector((state) => state.stickerpacks.stickerpacks);
 
   if (sessionPacks) {

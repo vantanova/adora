@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "antd/dist/antd.css";
 import "./Styling/Post.css";
 import { Card, Avatar, Button, Collapse, Modal } from "antd";
-import { currentPostId, addLike, getAllPosts } from "../store/post";
+import { currentPostId, addLike } from "../store/post";
 import Stickerbook from "./Stickerbook";
 import MiniStickebook from "./MiniStickerbook";
 import MiniProfile from "./MiniProfile";
@@ -61,11 +61,11 @@ const Post = ({ post }) => {
   // };
 
   async function deletePost() {
-    const res = await fetch(`/api/posts/${post.id}`, {
+    await fetch(`/api/posts/${post.id}`, {
       method: "DELETE",
     });
-    const data = await res.json();
-    console.log(post.id);
+    // const data = await res.json();
+    // console.log(post.id);
   }
 
   const footer = (

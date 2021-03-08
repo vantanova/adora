@@ -6,7 +6,9 @@ import { Button, Menu, Modal, Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
 
 function Searchbar() {
-  const onSearch = (value) => console.log(value);
+  const [search, setSearch] = useState();
+  const onSearch = (e) => setSearch(e.target.value);
+  console.log(search);
 
   return (
     <div>
@@ -14,6 +16,7 @@ function Searchbar() {
         style={{ width: "30vh" }}
         prefix={<SearchOutlined style={{ color: "rgb(128, 104, 84)" }} />}
         placeholder="input search text"
+        value={search}
         onChange={onSearch}
       />
     </div>

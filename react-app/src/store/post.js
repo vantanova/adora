@@ -46,6 +46,15 @@ export const getAllPosts = () => async (dispatch) => {
   dispatch(allPosts(data));
 };
 
+export const getPostsBySearch = (search) => async (dispatch) => {
+  const res = await fetch("/api/posts/", {
+    method: "POST",
+    body: JSON.stringify(search),
+  });
+  const data = await res.json();
+  dispatch(allPosts(data));
+};
+
 const initialState = { post: null };
 
 function reducer(state = initialState, action) {

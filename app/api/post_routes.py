@@ -1,10 +1,13 @@
 from operator import pos
+from sqlalchemy import or_
 from flask import Blueprint, jsonify, request, redirect
 from flask_login import login_required, current_user
 from app.models import db, Post, User, post_likes
 from werkzeug.utils import secure_filename
 from ..forms.post_form import PostForm
 from ..helpers import *
+import re
+import fnmatch
 
 post_routes = Blueprint('posts', __name__)
 
@@ -24,6 +27,25 @@ def validation_errors_to_error_messages(validation_errors):
 @post_routes.route('/')
 def posts():
     posts = Post.query.all()
+
+    return {post.id:post.to_dict() for post in posts}
+
+@post_routes.route('/search', methods=["POST"])
+def search_posts():
+    searchTerm = request.data.decode("utf-8")
+    print(searchTerm)
+    # conds = [Post.title == searchTerm]
+
+    all_posts = Post.query.all()
+    all_post_names = [post.title for post in all_posts]
+    print(all_post_names)
+    filtered = fnmatch.filter(all_post_names, searchTerm+"*")
+    print(filtered)
+
+
+
+    posts = [Post.query.filter(Post.title.like(match)).first() for match in filtered]
+
 
     return {post.id:post.to_dict() for post in posts}
 

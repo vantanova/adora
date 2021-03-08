@@ -47,11 +47,12 @@ export const getAllPosts = () => async (dispatch) => {
 };
 
 export const getPostsBySearch = (search) => async (dispatch) => {
-  const res = await fetch("/api/posts/", {
+  const res = await fetch(`/api/posts/search`, {
     method: "POST",
-    body: JSON.stringify(search),
+    body: search,
   });
   const data = await res.json();
+  console.log(data);
   dispatch(allPosts(data));
 };
 

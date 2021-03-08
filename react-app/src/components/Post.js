@@ -16,9 +16,9 @@ const Post = ({ post }) => {
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
 
-  const [likes, setLikes] = useState(
-    useSelector((state) => state.post.posts[post.id].likes)
-  );
+  // const [likes, setLikes] = useState(
+  //   useSelector((state) => state.post.posts[post.id].likes)
+  // );
 
   const [visible, setVisible] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -44,7 +44,7 @@ const Post = ({ post }) => {
   };
 
   function addALike() {
-    setLikes((likes) => (likes += 1));
+    // setLikes((likes) => (likes += 1));
     dispatch(addLike(post.id));
   }
   // useEffect(() => {
@@ -109,7 +109,7 @@ const Post = ({ post }) => {
       {/* <Button type="text">
         <DislikeTwoTone style={{ fontSize: "2vh" }} />
       </Button> */}
-      <h2 className="like_text">{likes}</h2>
+      {/* <h2 className="like_text">{likes}</h2> */}
       <Button type="text">
         <LikeTwoTone
           onClick={addALike}

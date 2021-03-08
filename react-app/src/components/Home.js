@@ -4,6 +4,7 @@ import Post from "./Post";
 import "./Styling/Home.css";
 import { getAllPosts, setFile } from "../store/post";
 import { useDispatch, useSelector } from "react-redux";
+import { Empty, Card } from "antd";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,18 @@ const Home = () => {
       setAllPostsArr(Object.values(allPosts));
     }
   }, [allPosts]);
+
+  console.log(allPostsArr);
+
+  if (allPostsArr && allPostsArr.length < 1) {
+    return (
+      <div className="main_content">
+        <Card style={{ marginTop: "2vh" }}>
+          <Empty description={<h3>Sorry no posts found!</h3>} />
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="main_content">

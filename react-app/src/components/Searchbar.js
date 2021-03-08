@@ -4,10 +4,16 @@ import "./Styling/Stickerbook.css";
 import Sticker from "./Sticker";
 import { Button, Menu, Modal, Input } from "antd";
 import { SearchOutlined } from "@ant-design/icons";
+import { useDispatch } from "react-redux";
+import { getPostsBySearch } from "../store/post";
 
 function Searchbar() {
-  const [search, setSearch] = useState();
-  const onSearch = (e) => setSearch(e.target.value);
+  const dispatch = useDispatch();
+  let search;
+  const onSearch = (e) => {
+    search = e.target.value;
+    dispatch(getPostsBySearch(search));
+  };
   console.log(search);
 
   return (

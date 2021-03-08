@@ -12,7 +12,7 @@ import { getUserStickers } from "../store/sticker";
 
 function Stickerpack(props) {
   // const history = useHistory();
-  const stickerpack = props.props;
+  // const stickerpack = props.props;
   const sessionUser = useSelector((state) => state.session.user);
 
   function wait(ms) {
@@ -26,7 +26,7 @@ function Stickerpack(props) {
 
   const dispatch = useDispatch();
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [isLoading, setSetIsLoading] = useState(
+  const [isLoading, setIsLoading] = useState(
     <div className="sticker_load">
       <Spin
         indicator={
@@ -42,9 +42,9 @@ function Stickerpack(props) {
 
   const showModal = async () => {
     setIsModalVisible(true);
-    const results = await dispatch(redeemUserStickerpacks(stickerpack.id));
+    const results = await dispatch(redeemUserStickerpacks(props.props.id));
     await wait(5000);
-    await setSetIsLoading(
+    await setIsLoading(
       <div className="results">
         <h1>You got {results.title}!</h1>
         <img className="sticker" alt="sticker" src={results.photoUrl}></img>
@@ -57,8 +57,21 @@ function Stickerpack(props) {
   };
 
   const handleCancel = () => {
-    dispatch(getUserStickerpacks(stickerpack.id));
+    dispatch(getUserStickerpacks(props.props.id));
     setIsModalVisible(false);
+    setIsLoading(
+      <div className="sticker_load">
+        <Spin
+          indicator={
+            <LoadingOutlined
+              style={{ fontSize: 300, color: "rgb(128, 104, 84)" }}
+              spin
+            />
+          }
+        />
+        <h1 style={{ marginTop: "7vh" }}>Generating sticker...</h1>
+      </div>
+    );
   };
 
   return (
@@ -72,7 +85,7 @@ function Stickerpack(props) {
         <button className="stickerpack">
           <svg width="30vh" height="40vh">
             <image
-              href={stickerpack.photoUrl}
+              href={props.props.photoUrl}
               width="30vh"
               height="40vh"
             ></image>
@@ -80,7 +93,7 @@ function Stickerpack(props) {
         </button>
       </Popconfirm>
       <Modal
-        title={stickerpack.title}
+        title={props.props.title}
         visible={isModalVisible}
         footer={null}
         onOk={handleOk}

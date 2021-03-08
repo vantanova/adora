@@ -29,29 +29,31 @@ function Stickerbook() {
   ];
 
   return (
-    <div className="stickerbook">
-      <div className="line"></div>
-      <FlipPage
-        flipOnTouchZone={4}
-        className="book"
-        disableSwipe
-        flipOnTouch
-        showTouchHint
-        orientation="horizontal"
-        responsive
-        pageBackground="#fffdf8"
-      >
-        {pages.map((page) => (
-          <article className="article_style">
-            <h1 className="book_title">{page.title}</h1>
-            {sessionStickers &&
-              sessionStickers.stickers.map((sticker) => (
-                <Sticker sticker={sticker}></Sticker>
-              ))}
-          </article>
-        ))}
-      </FlipPage>
-    </div>
+    sessionUser && (
+      <div className="stickerbook">
+        <div className="line"></div>
+        <FlipPage
+          flipOnTouchZone={4}
+          className="book"
+          disableSwipe
+          flipOnTouch
+          showTouchHint
+          orientation="horizontal"
+          responsive
+          pageBackground="#fffdf8"
+        >
+          {pages.map((page) => (
+            <article className="article_style">
+              <h1 className="book_title">{page.title}</h1>
+              {sessionStickers &&
+                sessionStickers.stickers.map((sticker) => (
+                  <Sticker sticker={sticker}></Sticker>
+                ))}
+            </article>
+          ))}
+        </FlipPage>
+      </div>
+    )
   );
 }
 

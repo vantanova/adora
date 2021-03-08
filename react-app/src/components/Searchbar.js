@@ -21,7 +21,7 @@ function Searchbar() {
       <Input
         style={{ width: "30vh" }}
         prefix={<SearchOutlined style={{ color: "rgb(128, 104, 84)" }} />}
-        placeholder="input search text"
+        placeholder="search by post"
         value={search}
         onChange={onSearch}
       />

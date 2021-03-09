@@ -16,8 +16,8 @@ class Post(db.Model):
     ownerId = db.Column(
         db.Integer, db.ForeignKey("users.id"), nullable=False)
     user = db.relationship("User", cascade="all,delete")
-    stickers = db.relationship("Sticker",  lazy="dynamic", secondary="post_stickers", back_populates="posts")
-    user_likes = db.relationship("User", lazy="dynamic", cascade="all,delete", secondary=post_likes,
+    stickers = db.relationship("Sticker",  lazy="dynamic",  passive_deletes=True, secondary="post_stickers", back_populates="posts")
+    user_likes = db.relationship("User", lazy="dynamic", cascade="all, delete", secondary=post_likes,
                         back_populates="post_likes")
 
 

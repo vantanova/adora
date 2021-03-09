@@ -44,7 +44,7 @@ def search_posts():
 
 
 
-    posts = [Post.query.filter(Post.title.like(match)).first() for match in filtered]
+    posts = [Post.query.filter(Post.title.ilike(match)).first() for match in filtered]
 
 
     return {post.id:post.to_dict() for post in posts}

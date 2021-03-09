@@ -23,7 +23,8 @@ def redeem_user_stickerpacks(packTypeId):
     row = User_pack.query.filter_by(userId = current_user.id, packTypesId = packTypeId).first()
     pack = Pack_type.query.get(packTypeId)
     numOfRows = Sticker.query.count()
-    randomInt = random.randint(0,numOfRows)
+    print(numOfRows)
+    randomInt = random.randint(1,numOfRows)
 
     newSticker = Sticker.query.get(randomInt)
 

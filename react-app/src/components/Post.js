@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "antd/dist/antd.css";
 import "./Styling/Post.css";
@@ -14,12 +14,13 @@ const { Panel } = Collapse;
 const { Meta } = Card;
 
 const Post = ({ post }) => {
+  const id = post.id;
   const dispatch = useDispatch();
   const sessionUser = useSelector((state) => state.session.user);
+  const sessionPost = useSelector((state) => state.post.posts[id]);
+  console.log(sessionPost);
 
-  // const [likes, setLikes] = useState(
-  //   useSelector((state) => state.post.posts[post.id].likes)
-  // );
+  const [likes, setLikes] = useState();
 
   const [visible, setVisible] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -45,21 +46,10 @@ const Post = ({ post }) => {
   };
 
   function addALike() {
-    // setLikes((likes) => (likes += 1));
     dispatch(addLike(post.id));
   }
-  // useEffect(() => {
-  // }, []);
 
-  // const deletePost = (postId) => async (dispatch) => {
-  //   // const res = await fetch(`/api/posts/${postId}`, {
-  //   //   method: "DELETE",
-  //   // });
-  //   // const data = await res.json();
-  //   console.log(postId);
-  //   let data = "hi";
-  //   return data;
-  // };
+  // useEffect(() => {}, []);
 
   async function deletePost() {
     await fetch(`/api/posts/${post.id}`, {
@@ -111,7 +101,7 @@ const Post = ({ post }) => {
       {/* <Button type="text">
         <DislikeTwoTone style={{ fontSize: "2vh" }} />
       </Button> */}
-      {/* <h2 className="like_text">{likes}</h2> */}
+      <h2 className="like_text">{likes}</h2>
       <Button type="text">
         <LikeTwoTone
           onClick={addALike}
@@ -174,7 +164,9 @@ const Post = ({ post }) => {
           avatar={Avatar}
           style={{ width: "40rem", margin: "1rem" }}
           className="post"
-          actions={[likeActions, showText, lastTab()]}
+          actions={
+            sessionUser ? [likeActions, showText, lastTab()] : [showText]
+          }
           extra={<MiniStickebook stickers={post.stickers}></MiniStickebook>}
         >
           <img className="post_image" alt="post" src={post.photoUrl}></img>

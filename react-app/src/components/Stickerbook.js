@@ -21,12 +21,7 @@ function Stickerbook() {
 
   const sessionStickers = useSelector((state) => state.sticker.sticker);
 
-  const pages = [
-    { title: "My Stickers", content: "Content content content" },
-    { title: "Shape Stickers", content: "Content content content" },
-    { title: "Summer Stickers", content: "Content content content" },
-    { title: "Serious Stickers", content: "Content content content" },
-  ];
+  const pages = [{ title: "My Stickers", content: "Content content content" }];
 
   return (
     sessionUser && (
@@ -37,7 +32,7 @@ function Stickerbook() {
           className="book"
           disableSwipe
           flipOnTouch
-          showTouchHint
+          // showTouchHint
           orientation="horizontal"
           responsive
           pageBackground="#fffdf8"

@@ -8,6 +8,7 @@ import Stickerbook from "./Stickerbook";
 import MiniStickebook from "./MiniStickerbook";
 import MiniProfile from "./MiniProfile";
 import { LikeTwoTone, BookTwoTone, DeleteOutlined } from "@ant-design/icons";
+import { getAllPosts } from "../store/post";
 
 const { Panel } = Collapse;
 const { Meta } = Card;
@@ -64,6 +65,7 @@ const Post = ({ post }) => {
     await fetch(`/api/posts/${post.id}`, {
       method: "DELETE",
     });
+    await dispatch(getAllPosts());
     // const data = await res.json();
     // console.log(post.id);
   }

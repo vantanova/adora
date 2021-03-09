@@ -28,7 +28,7 @@ function Profile() {
     setPhotoFile(e.target.files[0]);
   }
 
-  function submit(e) {
+  async function submit(e) {
     e.preventDefault();
     if (photoFile) {
       dispatch(photoUpload(photoFile)).then((res) => {
@@ -37,10 +37,10 @@ function Profile() {
       });
     }
     if (bio) {
-      dispatch(changeBio(bio)).then((res) => {
-        setBio("");
-        dispatch(restoreUser());
-      });
+      await dispatch(changeBio(bio));
+      await setBio("");
+      await setAbout(bio);
+      await dispatch(restoreUser());
     }
   }
 

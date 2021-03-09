@@ -56,7 +56,7 @@ function MiniProfile(post) {
                   ></ProfileStickerbook>
                 </div>
               </TabPane>
-              <TabPane tab={`${userProfile.owner.username}'s Likes`} key="2">
+              {/* <TabPane tab={`${userProfile.owner.username}'s Likes`} key="2">
                 Content of Tab Pane 2
               </TabPane>
               <TabPane
@@ -64,7 +64,7 @@ function MiniProfile(post) {
                 key="3"
               >
                 Content of Tab Pane 3
-              </TabPane>
+              </TabPane> */}
             </Tabs>
           </Col>
         </Row>

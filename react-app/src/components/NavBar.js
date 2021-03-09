@@ -64,7 +64,7 @@ const NavBar = () => {
           </NavLink>
         </Menu.Item>
         {sessionUser && (
-          <Menu.Item key="9" style={{ border: "none" }}>
+          <Menu.Item key="11" style={{ border: "none" }}>
             <NavLink
               to="/packs"
               exact={true}

@@ -1,5 +1,6 @@
 // const REMOVE_STICKER = "sticker/removeSticker";
 const GET_STICKER = "sticker/getSticker";
+const REMOVE_USER = "session/removeUser";
 const EDIT_STICKER = "sticker/editSticker";
 
 const getSticker = (sticker) => ({
@@ -37,12 +38,15 @@ export const getUserStickers = (id) => async (dispatch) => {
 const initialState = { sticker: null };
 
 function reducer(state = initialState, action) {
-  // let newState;
+  let newState;
   switch (action.type) {
     case GET_STICKER:
       return { ...state, sticker: action.payload };
     case EDIT_STICKER:
       return { ...state, stickerEdit: action.payload };
+    case REMOVE_USER:
+      newState = Object.assign({}, state, { sticker: null });
+      return newState;
     default:
       return state;
   }

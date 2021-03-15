@@ -20,7 +20,7 @@ const Post = ({ post }) => {
   const sessionPost = useSelector((state) => state.post.posts[id]);
   console.log(sessionPost);
 
-  const [likes, setLikes] = useState(sessionPost.likes);
+  const [likes, setLikes] = useState(post.likes);
 
   const [visible, setVisible] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);

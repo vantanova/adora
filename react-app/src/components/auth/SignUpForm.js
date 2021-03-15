@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { createUser } from "../../store/session";
+import { createUser, login } from "../../store/session";
 import { Card, Button, Input } from "antd";
 import "../Styling/Form.css";
 
@@ -31,6 +31,10 @@ const SignUpForm = () => {
       //   }
       // });
     }
+  };
+
+  const loginAsDemo = async (e) => {
+    await dispatch(login({ email: "demo@aa.io", password: "password" }));
   };
 
   const updateUsername = (e) => {
@@ -110,6 +114,21 @@ const SignUpForm = () => {
             }}
           >
             Sign Up
+          </Button>
+        </div>
+        <div>
+          <Button
+            type="primary"
+            block={true}
+            onClick={loginAsDemo}
+            className="form_input"
+            size="large"
+            style={{
+              background: "rgb(128, 104, 84)",
+              border: "rgb(141, 114, 92)",
+            }}
+          >
+            Try as Demo User
           </Button>
         </div>
       </form>

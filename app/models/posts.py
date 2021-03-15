@@ -10,7 +10,7 @@ class Post(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100), nullable=False)
     uploadDate = db.Column(db.Date)
-    message = db.Column(db.String(500), nullable=True)
+    message = db.Column(db.String(1000), nullable=True)
     photoUrl = db.Column(db.String, nullable=False)
     likes = db.Column(db.Integer, nullable=True)
     ownerId = db.Column(

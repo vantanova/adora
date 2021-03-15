@@ -20,7 +20,7 @@ const Post = ({ post }) => {
   const sessionPost = useSelector((state) => state.post.posts[id]);
   console.log(sessionPost);
 
-  const [likes, setLikes] = useState();
+  const [likes, setLikes] = useState(sessionPost.likes);
 
   const [visible, setVisible] = useState(0);
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -47,9 +47,8 @@ const Post = ({ post }) => {
 
   function addALike() {
     dispatch(addLike(post.id));
+    setLikes((e) => (e += 1));
   }
-
-  // useEffect(() => {}, []);
 
   async function deletePost() {
     await fetch(`/api/posts/${post.id}`, {

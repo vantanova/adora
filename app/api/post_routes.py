@@ -66,9 +66,10 @@ def add_like_post(id):
 
     post.user_likes.append(current_user)
 
+    post.likes += 1
     # db.session.add(post)
     db.session.commit()
-    print ("--------------------", post.to_dict())
+
 
     return post.to_dict()
 
@@ -91,9 +92,6 @@ def create_post():
 
             data.photoUrl = photoUrl
             data.likes = 0
-
-            print("---------------", file)
-            print("---------------", photoUrl)
 
             if file.filename == "":
                 return "Please select a file"

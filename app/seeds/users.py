@@ -6,8 +6,8 @@ def seed_users():
 
     demo = User(username='Demo', email='demo@aa.io',
                 password='password', bio="Wow I sure love the weather!", photoUrl="https://spiritual.gwangi-theme.com/wp-content/themes/gwangi/assets/images/avatars/user-avatar.png")
-    demo1 = User(username='RocketProG', email='anguilar@aol.com',
-                password='password', bio="I love spaghetti!", photoUrl="https://chordify.net/pages/wp-content/uploads/2019/08/random-chiasso-1024x683.png")
+    demo1 = User(username='GenYetAgain', email='anguilar@aol.com',
+                password='password', bio="What did the Java code say to the C code? You've got no class.", photoUrl="https://chordify.net/pages/wp-content/uploads/2019/08/random-chiasso-1024x683.png")
 
 
     db.session.add(demo)

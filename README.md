@@ -1,6 +1,6 @@
-# Adora
-
-
+<p align="center">
+ <img alt="Big Logo"  src="https://user-images.githubusercontent.com/70561117/111497137-1b229b00-86fe-11eb-9b16-c6e972b18fea.png" width="50%"/>
+</ p>
 ---
 
 **Adora** is social media application

@@ -1,7 +1,10 @@
+<br />
+<br />
 <p align="center">
  <img alt="Big Logo"  src="https://user-images.githubusercontent.com/70561117/111498929-a81a2400-86ff-11eb-9655-93761b76a922.png" width="50%"/>
 </ p>
----
+
+<br />
 
 **Adora** is social media application
 

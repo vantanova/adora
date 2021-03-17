@@ -140,7 +140,7 @@ based on the variables in local storage and render them dynamically:
 </details>
 
 ## Challenges throughout the development process
-We faced a few challenges while we were building Aurora:
+We faced a few challenges while we were building Adora:
 
 1. We encountered a merge issue with one of our features that took a long time to sort out.
 Make sure you stay up to date with ```main```, folks!
@@ -150,7 +150,7 @@ Thankfully, we were able to reference some other people's strategies and come up
 that fit our project.
 
 
-## Developers
+## Developer
 
 <table style="width:100%">
   <tr>

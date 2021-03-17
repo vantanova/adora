@@ -33,7 +33,7 @@ towards other users posts. Collect as many stickers as you can!
   * Seed all data with ```npx dotenv sequelize db:seed:all```
 - Use the start script ```npm start``` to run the server
 
-## Technologies used in Aurora
+## Technologies used in Adora
 <p align="left">
 <a href="https://flask.palletsprojects.com/en/1.1.x/">
 <img src="https://img.shields.io/badge/Flask-v1.12-blue">
@@ -60,12 +60,7 @@ towards other users posts. Collect as many stickers as you can!
 **Flask** was used for our backend and it reduced a ton of boiler plate 
 code, freeing us to implement more features. 
 
-**pyenv** was our software registry, and within it we installed many packages;
-some notable examples include:
-* 
-* 
-* 
-* 
+**pyenv** was our software registry, and within it we installed many packages.
 
 **React** is the view engine of choice! 
 
@@ -161,9 +156,6 @@ that fit our project.
 <table style="width:100%">
   <tr>
     <th><a href="https://github.com/vantanova" rel="nofollow"><img src="https://avatars1.githubusercontent.com/u/70561117?s=460&u=85a68af6fc136866eb4f33ee657aeb751aba9935&v=4" height="auto" width="100"></a></th>
-    <th><a href="https://github.com/midigi" rel="nofollow"><img src="https://avatars.githubusercontent.com/u/16071042?s=460&u=55b7ede1bdfa6882cda2ffcbfb94e24d2b2050e8&v=4" height="auto" width="100"></a></th>
-    <th><a href="https://github.com/IamDgrant" rel="nofollow"><img src="https://avatars.githubusercontent.com/u/68237215?s=460&u=cd87edf80199467670d2b4e87fc13b1001245f7e&v=4" height="auto" width="100"></a></th>
-    <th><a href="https://github.com/bparsons17" rel="nofollow"><img src="https://avatars.githubusercontent.com/u/67128124?s=460&v=4" height="auto" width="100"></a></th>
   </tr>
   <tr>
     <td>Antonio A.</td>
@@ -173,9 +165,6 @@ that fit our project.
   </tr>
   <tr>
     <td><a href="https://github.com/vantanova">@vantanova</a></td>
-    <td><a href="https://github.com/midigi">@midigi</a></td>
-    <td><a href="https://github.com/IamDgrant">@IamDgrant</a></td>
-    <td><a href="https://github.com/bparsons17">@bparsons17</a></td>
   </tr>
 </table>
 

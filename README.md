@@ -1,11 +1,9 @@
-# Asauna
+# Adora
 
 
 ---
 
-**Asauna** is a clone of **[Asana](https://www.asana.com/)** that allows a user create projects.
-Projects are compromised of tasks composed by members of the group. Tasks have status' that reflect the 
-state of the respective task. 
+**Adora** is social media application
 
 <img alt="Logo" align="right" src="https://user-images.githubusercontent.com/70561117/103400052-8645d380-4af8-11eb-8c61-1f2bab847bfd.png" width="20%" />
 

@@ -5,14 +5,16 @@
 </ p>
 
 <br />
+<br />
 <hr />
 
-**Adora** is social media application
+**Adora** is social media application with stickers! Stickers are special awards that a user can grant 
+towards other users posts. Collect as many stickers as you can!
 
 * Users can **log in** or **sign up** to access functionality the site.
-* A user has the ability to **make projects** with both members and tasks.
-* Posted tasks can be **completed** with their due date, status and assignee all changeable.
-* The **profile page** hosts information about each user including their current projects and tasks.  
+* A user has the ability to **make posts** using the canvas element to draw an image, with optional text.
+* The **stickerbook** holds all the users stickers, with a description of each.
+* The **profile page** allows the user to change their profile picture or bio.  
 
 
 <p align="center">

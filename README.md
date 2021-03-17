@@ -164,5 +164,5 @@ that fit our project.
   </tr>
 </table>
 
-<p> <i>Thank you for reading our project README ❤️</i> </p>
+<p> <i>Thank you for reading my project README ❤️</i> </p>
 

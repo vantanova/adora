@@ -1,98 +1,181 @@
-# Flask React Project
+# Asauna
 
-This is the backend for the Flask React project.
 
-## Getting started
+---
 
-1. Clone this repository (only this branch)
+**Asauna** is a clone of **[Asana](https://www.asana.com/)** that allows a user create projects.
+Projects are compromised of tasks composed by members of the group. Tasks have status' that reflect the 
+state of the respective task. 
 
-   ```bash
-   git clone https://github.com/appacademy-starters/python-project-starter.git
-   ```
+<img alt="Logo" align="right" src="https://user-images.githubusercontent.com/70561117/103400052-8645d380-4af8-11eb-8c61-1f2bab847bfd.png" width="20%" />
 
-2. Install dependencies
+* Users can **log in** or **sign up** to access functionality the site.
+* A user has the ability to **make projects** with both members and tasks.
+* Posted tasks can be **completed** with their due date, status and assignee all changeable.
+* The **profile page** hosts information about each user including their current projects and tasks.  
 
-      ```bash
-      pipenv install --dev -r dev-requirements.txt && pipenv install -r requirements.txt
-      ```
 
-3. Create a **.env** file based on the example with proper settings for your
-   development environment
-4. Setup your PostgreSQL user, password and database and make sure it matches your **.env** file
+<p align="center">
+<img src="https://user-images.githubusercontent.com/70561117/109456977-c77e3500-7a0e-11eb-9808-ea5c5db47d77.PNG">
+</p>
 
-5. Get into your pipenv, migrate your database, seed your database, and run your flask app
+<h2>Try the site live: <a href=http://aurora-quora.herokuapp.com/>Here</a> <b>|</b> Check out our <a href="https://github.com/midigi/a_sauna/wiki">documentation</a></h2>
 
-   ```bash
-   pipenv shell
-   ```
+## How to run the site locally
 
-   ```bash
-   flask db upgrade
-   ```
+- Clone the repo
+- Use the command ```npm install``` to install all dependencies
+- Make a copy of the .env.example file and edit to match local db configuration
+- Create the database and user in psql
+  * Run all migrations with ```npx dotenv sequelize db:migrate```
+  * Seed all data with ```npx dotenv sequelize db:seed:all```
+- Use the start script ```npm start``` to run the server
 
-   ```bash
-   flask seed all
-   ```
+## Technologies used in Aurora
+<p align="left">
+<a href="https://flask.palletsprojects.com/en/1.1.x/">
+<img src="https://img.shields.io/badge/Flask-v1.12-blue">
+<a/>
 
-   ```bash
-   flask run
-   ```
+<a href="https://www.sqlalchemy.org/">
+<img src="https://img.shields.io/badge/SQLAlchemy-v1.3-blue">
+<a/>
+  
+<a href="https://reactjs.org/">  
+<img src="https://img.shields.io/badge/React-v17-blue">
+<a/>
+ 
+ <a href="https://www.docker.com/">  
+<img src="https://img.shields.io/badge/Docker-v3-blue">
+<a/>
 
-6. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+<a href="https://www.heroku.com/">
+<img src="https://img.shields.io/badge/Heroku-hosting-blue">
+<a/>
+</p>
 
-***
-*IMPORTANT!*
-   If you add any python dependencies to your pipfiles, you'll need to regenerate your requirements.txt before deployment.
-   You can do this by running:
 
-   ```bash
-   pipenv lock -r > requirements.txt
-   ```
+**Flask** was used for our backend and it reduced a ton of boiler plate 
+code, freeing us to implement more features. 
 
-*ALSO IMPORTANT!*
-   psycopg2-binary MUST remain a dev dependency because you can't install it on apline-linux.
-   There is a layer in the Dockerfile that will install psycopg2 (not binary) for us.
-***
+**pyenv** was our software registry, and within it we installed many packages;
+some notable examples include:
+* 
+* 
+* 
+* 
 
-## Deploy to Heroku
+**React** is the view engine of choice! 
 
-1. Create a new project on Heroku
-2. Under Resources click "Find more add-ons" and add the add on called "Heroku Postgres"
-3. Install the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-command-line)
-4. Run
+**Heroku** is the web hosting app of our choice that allowed us to 
+run our app on the cloud! 
 
-   ```bash
-   heroku login
-   ```
+**Honorable Mentions** are the developement tools that made life 
+much more enjoyable! 
+* Postman made route testing very easy and fun!
+* Postbird, its wonderful GUI made all the difference!
 
-5. Login to the heroku container registry
+## Features that we implemented
+The first big feature we tackled is the searching algorithm,
+which populates the page with results containing either a question's
+title or its message. 
+    ```
+   TBD
+    ```
+<details><summary><b>How it was done</b></summary>
 
-   ```bash
-   heroku container:login
-   ```
+1. We started by extracting the search term from the POST request.
+```
+  TBD
+```
+2. Then we queried the database for questions where either the question title 
+  or the question message (case insensitive) matched the search term.
+  
+    ```
+    TBD
+    ```
+    
+3. We included each question's topic, expertise level, and user, and 
+  ordered the results so that the most recent question appears first. 
 
-6. Update the `REACT_APP_BASE_URL` variable in the Dockerfile.
-   This should be the full URL of your Heroku app: i.e. "https://flask-react-aa.herokuapp.com"
-7. Push your docker container to heroku from the root directory of your project.
-   This will build the dockerfile and push the image to your heroku container registry
+    ```
+    TBD
+    ```    
 
-   ```bash
-   heroku container:push web -a {NAME_OF_HEROKU_APP}
-   ```
+</details>
 
-8. Release your docker container to heroku
+The other big feature that we implemented was a sorting algorithm on our search results.
 
-   ```bash
-   heroku container:release web -a {NAME_OF_HEROKU_APP}
-   ```
+    ```
+    TBD
+    ```
+<details><summary><b>How it was done</b></summary>
 
-9. set up your database:
+1. We started by populating the dropdown menus for Topic and Expertise Level on the 
+search results page to reflect the topics and expertise levels of the result questions:
 
-   ```bash
-   heroku run -a {NAME_OF_HEROKU_APP} flask db upgrade
-   heroku run -a {NAME_OF_HEROKU_APP} flask seed all
-   ```
+    ```
+     TBD
+    ```
+2. Then we cleared local storage when the search results page was loaded 
+in order to make space for our sorting function variables:
 
-10. Under Settings find "Config Vars" and add any additional/secret .env variables.
+    ```    
+    TBD
+    ```
+    
+    
+3. We rendered the dropdown select menus with the content from our query in step 1, 
+then set up an event listener to save the selected value to local storage:
+    ```
+    TBD
+    ```
+      
+4. We called a helper function on each of our result divs to filter results
+based on the variables in local storage and render them dynamically:
 
-11. profit
+    ```
+    TBD
+    ```
+    ```
+     TBD
+    ```
+</details>
+
+## Challenges throughout the development process
+We faced a few challenges while we were building Aurora:
+
+1. We encountered a merge issue with one of our features that took a long time to sort out.
+Make sure you stay up to date with ```main```, folks!
+
+2. It took us a long time to figure out what the best way to sort our search results was.
+Thankfully, we were able to reference some other people's strategies and come up with something
+that fit our project.
+
+
+## Developers
+
+<img alt="Developer" align="right" src="https://user-images.githubusercontent.com/70561117/103400187-079d6600-4af9-11eb-8d20-00c8f88e3936.png" width="20%" />
+<table style="width:100%">
+  <tr>
+    <th><a href="https://github.com/vantanova" rel="nofollow"><img src="https://avatars1.githubusercontent.com/u/70561117?s=460&u=85a68af6fc136866eb4f33ee657aeb751aba9935&v=4" height="auto" width="100"></a></th>
+    <th><a href="https://github.com/midigi" rel="nofollow"><img src="https://avatars.githubusercontent.com/u/16071042?s=460&u=55b7ede1bdfa6882cda2ffcbfb94e24d2b2050e8&v=4" height="auto" width="100"></a></th>
+    <th><a href="https://github.com/IamDgrant" rel="nofollow"><img src="https://avatars.githubusercontent.com/u/68237215?s=460&u=cd87edf80199467670d2b4e87fc13b1001245f7e&v=4" height="auto" width="100"></a></th>
+    <th><a href="https://github.com/bparsons17" rel="nofollow"><img src="https://avatars.githubusercontent.com/u/67128124?s=460&v=4" height="auto" width="100"></a></th>
+  </tr>
+  <tr>
+    <td>Antonio A.</td>
+    <td>Michael D.</td>
+    <td>Dre G.</td>
+    <td>Brandon P.</td>
+  </tr>
+  <tr>
+    <td><a href="https://github.com/vantanova">@vantanova</a></td>
+    <td><a href="https://github.com/midigi">@midigi</a></td>
+    <td><a href="https://github.com/IamDgrant">@IamDgrant</a></td>
+    <td><a href="https://github.com/bparsons17">@bparsons17</a></td>
+  </tr>
+</table>
+
+<p> <i>Thank you for reading our project README ❤️</i> </p>
+

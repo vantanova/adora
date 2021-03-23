@@ -26,12 +26,13 @@ towards other users posts. Collect as many stickers as you can!
 ## How to run the site locally
 
 - Clone the repo
-- Use the command ```npm install``` to install all dependencies
+- ```pipenv install``` in the main directory to install python packages  
+- ```/cd react-app``` and use the command ```npm install``` to install all dependencies
 - Make a copy of the .env.example file and edit to match local db configuration
 - Create the database and user in psql
   * Run all migrations with ```npx dotenv sequelize db:migrate```
   * Seed all data with ```npx dotenv sequelize db:seed:all```
-- Use the start script ```npm start``` to run the server
+- Use the start script in the react-app (```npm start```) to run the server
 
 ## Technologies used in Adora
 <p align="left">
@@ -57,15 +58,14 @@ towards other users posts. Collect as many stickers as you can!
 </p>
 
 
-**Flask** was used for our backend and it reduced a ton of boiler plate 
-code, freeing us to implement more features. 
+**Flask** was used for the backend and it reduced a ton of boiler plate 
+code, increasing development speed. 
 
-**pyenv** was our software registry, and within it we installed many packages.
+**pyenv** was the software registry of choice.
 
 **React** is the view engine of choice! 
 
-**Heroku** is the web hosting app of our choice that allowed us to 
-run our app on the cloud! 
+**Heroku** is the web hosting app of our choice that allowed runs our app on the cloud! 
 
 **Honorable Mentions** are the developement tools that made life 
 much more enjoyable! 

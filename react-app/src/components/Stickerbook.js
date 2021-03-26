@@ -21,7 +21,10 @@ function Stickerbook() {
 
   const sessionStickers = useSelector((state) => state.sticker.sticker);
 
-  const pages = [{ title: "My Stickers", content: "Content content content" }];
+  const pages = [
+    { title: "My Stickers", content: "Content content content" },
+    { title: "My Stickers", content: "Content content content" },
+  ];
 
   return (
     sessionUser && (

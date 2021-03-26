@@ -26,17 +26,10 @@ def sticker__to_post(stickerId, postId):
 
     row = User_sticker.query.filter_by(stickerId = stickerId, userId = current_user.id).first()
 
-    print("-----------------", row.id)
     User_sticker.query.filter_by(id=row.id).delete()
     post.stickers.append(sticker)
     new_owner.stickers.append(sticker)
-    # # post.stickers.add()
-
-    # # post
-
 
     db.session.commit()
-    print("------------------", sticker.to_dict())
-    print("------------------", post.to_dict())
 
     return post.to_dict()

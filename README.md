@@ -21,7 +21,7 @@ towards other users posts. Collect as many stickers as you can!
 <img src="https://user-images.githubusercontent.com/70561117/114602352-5d7ebf80-9c4b-11eb-88fd-1449ff5cb940.png">
 </p>
 
-<h2>Try the site live: <a href=https://adora-react.herokuapp.com//>Here</a> <b>|</b> Check out our <a href="https://github.com/vantanova/adora/wiki">documentation</a></h2>
+<h2>Try the site live: <a href=https://adora-react.herokuapp.com/>Here</a> <b>|</b> Check out our <a href="https://github.com/vantanova/adora/wiki">documentation</a></h2>
 
 ## How to run the site locally
 

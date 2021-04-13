@@ -72,7 +72,7 @@ much more enjoyable!
 * Postman made route testing very easy and fun!
 * Postbird, its wonderful GUI made all the difference!
 
-## Features that we implemented
+## Features implemented
 The first big feature we tackled is the searching algorithm,
 which populates the page with results containing either a question's
 title or its message. 
@@ -138,17 +138,6 @@ based on the variables in local storage and render them dynamically:
      TBD
     ```
 </details>
-
-## Challenges throughout the development process
-We faced a few challenges while we were building Adora:
-
-1. We encountered a merge issue with one of our features that took a long time to sort out.
-Make sure you stay up to date with ```main```, folks!
-
-2. It took us a long time to figure out what the best way to sort our search results was.
-Thankfully, we were able to reference some other people's strategies and come up with something
-that fit our project.
-
 
 ## Developer
 
